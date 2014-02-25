@@ -131,7 +131,7 @@ public final class FlipTables {
     out.append("║\n");
   }
 
-  static String pad(int width, String data) {
+  private static String pad(int width, String data) {
     return String.format(" %1$-" + width + "s ", data);
   }
 }
