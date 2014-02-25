@@ -17,7 +17,7 @@ public final class FlipTables {
     }
   };
 
-  public static <T> FlipTable fromList(List<T> rows, Class<T> rowType) {
+  public static <T> FlipTable fromIterable(Iterable<T> rows, Class<T> rowType) {
     if (rows == null) throw new NullPointerException("rows == null");
     if (rowType == null) throw new NullPointerException("rowType == null");
 
@@ -36,18 +36,21 @@ public final class FlipTables {
     }
 
     int columnCount = methods.size();
-    int rowCount = rows.size();
-    String[][] data = new String[rowCount][columnCount];
-    for (int row = 0; row < rowCount; row++) {
+    List<String[]> data = new ArrayList<>();
+    for (T row : rows) {
+      String[] rowData = new String[columnCount];
       for (int column = 0; column < columnCount; column++) {
         try {
-          data[row][column] = String.valueOf(methods.get(column).invoke(rows.get(row)));
+          rowData[column] = String.valueOf(methods.get(column).invoke(row));
         } catch (Exception e) {
           throw new RuntimeException(e);
         }
       }
+      data.add(rowData);
     }
-    return new FlipTable(headers.toArray(new String[headers.size()]), data);
+    String[] headerArray = headers.toArray(new String[headers.size()]);
+    String[][] dataArray = data.toArray(new String[data.size()][0]);
+    return new FlipTable(headerArray, dataArray);
   }
 
   private FlipTables() {

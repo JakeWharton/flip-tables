@@ -26,8 +26,8 @@ public class FlipTablesTest {
     assertTable(people, Person.class, expected);
   }
 
-  private static <T> void assertTable(List<T> rows, Class<T> rowType, String expected) {
+  private static <T> void assertTable(Iterable<T> rows, Class<T> rowType, String expected) {
     // Leading new line makes the output and compare view look better.
-    assertThat("\n" + FlipTables.fromList(rows, rowType).toString()).isEqualTo("\n" + expected);
+    assertThat("\n" + FlipTables.fromIterable(rows, rowType).toString()).isEqualTo("\n" + expected);
   }
 }

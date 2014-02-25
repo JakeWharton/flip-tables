@@ -64,10 +64,10 @@ System.out.println(FlipTable.of(headers, data));
 ╚═══════════════╧═══════════════╝
 ```
 
-Helper methods convert from types like `List`:
+Helper methods convert from types like lists:
 ```java
 List<Person> people = Arrays.asList(new Person("Foo", "Bar"), new Person("Kit", "Kat"));
-System.out.println(FlipTables.fromList(people, Person.class));
+System.out.println(FlipTables.fromIterable(people, Person.class));
 ```
 ```
 ╔═══════════╤══════════╗
