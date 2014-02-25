@@ -39,6 +39,25 @@ public class FlipTablesTest {
     assertTable(headers, data, expected);
   }
 
+  @Test public void newlines() {
+    String[] headers = { "Test\nNew Lines", "Header" };
+    String[][] data = { //
+        { "Foo\nBar", "Kit\nKat" }, //
+        { "Ping", "Pong" }, //
+    };
+    String expected = ""
+        + "╔═══════════╤════════╗\n"
+        + "║ Test      │ Header ║\n"
+        + "║ New Lines │        ║\n"
+        + "╠═══════════╪════════╣\n"
+        + "║ Foo       │ Kit    ║\n"
+        + "║ Bar       │ Kat    ║\n"
+        + "╟───────────┼────────╢\n"
+        + "║ Ping      │ Pong   ║\n"
+        + "╚═══════════╧════════╝\n";
+    assertTable(headers, data, expected);
+  }
+
   @Test public void simpleReflection() {
     List<Person> people = Arrays.asList( //
         new Person("Big", "Bird", 16, "Big Yellow"), //
@@ -75,10 +94,10 @@ public class FlipTablesTest {
   }
 
   private static void assertTable(String[] headers, String[][] data, String expected) {
-    assertThat(FlipTables.makeTable(headers, data).toString()).isEqualTo(expected);
+    assertThat("\n" + FlipTables.makeTable(headers, data).toString()).isEqualTo("\n" + expected);
   }
 
   private static <T> void assertTable(List<T> rows, Class<T> rowType, String expected) {
-    assertThat(FlipTables.makeTable(rows, rowType).toString()).isEqualTo(expected);
+    assertThat("\n" + FlipTables.makeTable(rows, rowType).toString()).isEqualTo("\n" + expected);
   }
 }

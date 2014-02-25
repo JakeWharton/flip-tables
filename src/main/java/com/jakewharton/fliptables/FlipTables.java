@@ -76,13 +76,17 @@ public final class FlipTables {
     columnWidths = new int[columns];
     int emptyWidth = columns + 1; // Account for dividers.
     for (int column = 0; column < columns; column++) {
-      columnWidths[column] = headers[column].length();
+      for (String headerLine : headers[column].split("\\n")) {
+        columnWidths[column] = headerLine.length();
+      }
       for (int row = 0; row < data.length; row++) {
         if (data[row].length != columns) {
           throw new IllegalArgumentException(
               String.format("Row %s %s columns != %s columns", row + 1, data[row].length, columns));
         }
-        columnWidths[column] = Math.max(columnWidths[column], data[row][column].length());
+        for (String cellLine : data[row][column].split("\\n")) {
+          columnWidths[column] = Math.max(columnWidths[column], cellLine.length());
+        }
       }
       emptyWidth += columnWidths[column];
     }
@@ -124,11 +128,16 @@ public final class FlipTables {
   }
 
   private void printData(Appendable out, String[] data) throws IOException {
-    for (int column = 0; column < columns; column++) {
-      out.append(column == 0 ? '║' : '│');
-      out.append(pad(columnWidths[column], data[column]));
+    for (int line = 0, lines = 1; line < lines; line++) {
+      for (int column = 0; column < columns; column++) {
+        out.append(column == 0 ? '║' : '│');
+        String[] cellLines = data[column].split("\\n");
+        lines = Math.max(lines, cellLines.length);
+        String cellLine = line < cellLines.length ? cellLines[line] : "";
+        out.append(pad(columnWidths[column], cellLine));
+      }
+      out.append("║\n");
     }
-    out.append("║\n");
   }
 
   private static String pad(int width, String data) {
