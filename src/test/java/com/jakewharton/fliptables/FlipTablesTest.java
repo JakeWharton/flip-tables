@@ -62,11 +62,8 @@ public class FlipTablesTest {
     String[] innerHeaders = { "One", "Two" };
     String[][] innerData = { { "1", "2" } };
     String nested = FlipTables.makeTable(innerHeaders, innerData).toString();
-
     String[] outerHeaders = { "Left", "Right" };
-    String[][] outerData = {
-        { nested, nested }
-    };
+    String[][] outerData = { { nested, nested } };
     String expected = ""
         + "╔═══════════════╤═══════════════╗\n"
         + "║ Left          │ Right         ║\n"

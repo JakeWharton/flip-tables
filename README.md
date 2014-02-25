@@ -70,6 +70,28 @@ System.out.println(FlipTables.makeTable(headers, data));
 ╚═══════════════╝
 ```
 
+Nested:
+```java
+String[] innerHeaders = { "One", "Two" };
+String[][] innerData = { { "1", "2" } };
+String inner = FlipTables.makeTable(innerHeaders, innerData).toString();
+String[] headers = { "Left", "Right" };
+String[][] data = { { inner, inner } };
+
+System.out.println(FlipTables.makeTable(headers, data));
+```
+```
+╔═══════════════╤═══════════════╗
+║ Left          │ Right         ║
+╠═══════════════╪═══════════════╣
+║ ╔═════╤═════╗ │ ╔═════╤═════╗ ║
+║ ║ One │ Two ║ │ ║ One │ Two ║ ║
+║ ╠═════╪═════╣ │ ╠═════╪═════╣ ║
+║ ║ 1   │ 2   ║ │ ║ 1   │ 2   ║ ║
+║ ╚═════╧═════╝ │ ╚═════╧═════╝ ║
+╚═══════════════╧═══════════════╝
+```
+
 
 
 License
