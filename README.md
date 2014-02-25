@@ -11,7 +11,7 @@ Usage
 -----
 ```java
 List<Person> people = Arrays.asList(new Person("Foo", "Bar"), new Person("Kit", "Kat"));
-System.out.println(FlipTables.makeTable(people, data));
+System.out.println(FlipTables.makeTable(people, Person.class));
 ```
 ```
 ╔═══════════╤══════════╗
