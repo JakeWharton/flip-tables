@@ -14,7 +14,7 @@ public class FlipTablesTest {
         + "╔══════╤════════╗\n"
         + "║ Test │ Header ║\n"
         + "╠══════╧════════╣\n"
-        + "║ No results.   ║\n"
+        + "║ (empty)       ║\n"
         + "╚═══════════════╝\n";
     assertTable(headers, data, expected);
   }

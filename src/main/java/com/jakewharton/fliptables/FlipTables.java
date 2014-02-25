@@ -104,7 +104,7 @@ public final class FlipTables {
     printData(out, headers);
     if (data.length == 0) {
       printDivider(out, "╠═╧═╣");
-      out.append('║').append(pad(emptyWidth, "No results.")).append("║\n");
+      out.append('║').append(pad(emptyWidth, "(empty)")).append("║\n");
       printDivider(out, "╚═══╝");
     } else {
       for (int row = 0; row < data.length; row++) {
