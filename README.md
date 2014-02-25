@@ -7,6 +7,15 @@ Because pretty-printing text tables in Java should be easy.
 
 
 
+To Do
+-----
+
+ * Java 8 `Collector`?
+ * Java 8 method references
+ * Builder
+
+
+
 Usage
 -----
 ```java
