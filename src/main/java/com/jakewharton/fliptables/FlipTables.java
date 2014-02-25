@@ -2,6 +2,11 @@ package com.jakewharton.fliptables;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * (╯°□°）╯︵ ┻━┻
@@ -19,6 +24,38 @@ import java.io.StringWriter;
  * </pre>
  */
 public final class FlipTables {
+  private static final Pattern METHOD = Pattern.compile("^(?:get|is|has)([A-Z][a-zA-Z0-9]*)+$");
+
+  public static <T> FlipTables makeTable(List<T> rows, Class<T> rowType) {
+    if (rows == null) throw new NullPointerException("rows == null");
+    if (rowType == null) throw new NullPointerException("rowType == null");
+
+    List<Method> methods = new ArrayList<>();
+    List<String> headers = new ArrayList<>();
+    for (Method method : rowType.getDeclaredMethods()) {
+      if (method.getParameterCount() > 0) continue;
+      if (method.getReturnType() == void.class) continue;
+      Matcher matcher = METHOD.matcher(method.getName());
+      if (!matcher.matches()) continue;
+      methods.add(method);
+      headers.add(matcher.group(1));
+    }
+
+    int columnCount = methods.size();
+    int rowCount = rows.size();
+    String[][] data = new String[rowCount][columnCount];
+    for (int row = 0; row < rowCount; row++) {
+      for (int column = 0; column < columnCount; column++) {
+        try {
+          data[row][column] = String.valueOf(methods.get(column).invoke(rows.get(row)));
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+      }
+    }
+    return new FlipTables(headers.toArray(new String[columnCount]), data);
+  }
+
   public static FlipTables makeTable(String[] headers, String[][] data) {
     if (headers == null) throw new NullPointerException("headers == null");
     if (data == null) throw new NullPointerException("data == null");

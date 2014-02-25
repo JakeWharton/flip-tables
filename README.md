@@ -10,6 +10,21 @@ Because pretty-printing text tables in Java should be easy.
 Usage
 -----
 ```java
+List<Person> people = Arrays.asList(new Person("Foo", "Bar"), new Person("Kit", "Kat"));
+System.out.println(FlipTables.makeTable(people, data));
+```
+```
+╔═══════════╤══════════╗
+║ FirstName │ LastName ║
+╠═══════════╪══════════╣
+║ Foo       │ Bar      ║
+╟───────────┼──────────╢
+║ Kit       │ Kat      ║
+╚═══════════╧══════════╝
+```
+
+Data can also be specified explicitly:
+```java
 String[] headers = { "Test", "Header" };
 String[][] data = {
     { "Foo", "Bar" },
@@ -19,7 +34,6 @@ String[][] data = {
 
 System.out.println(FlipTables.makeTable(headers, data));
 ```
-Yields:
 ```
 ╔══════╤════════╗
 ║ Test │ Header ║
