@@ -58,6 +58,29 @@ public class FlipTablesTest {
     assertTable(headers, data, expected);
   }
 
+  @Test public void nested() {
+    String[] innerHeaders = { "One", "Two" };
+    String[][] innerData = { { "1", "2" } };
+    String nested = FlipTables.makeTable(innerHeaders, innerData).toString();
+
+    String[] outerHeaders = { "Left", "Right" };
+    String[][] outerData = {
+        { nested, nested }
+    };
+    String expected = ""
+        + "╔═══════════════╤═══════════════╗\n"
+        + "║ Left          │ Right         ║\n"
+        + "╠═══════════════╪═══════════════╣\n"
+        + "║ ╔═════╤═════╗ │ ╔═════╤═════╗ ║\n"
+        + "║ ║ One │ Two ║ │ ║ One │ Two ║ ║\n"
+        + "║ ╠═════╪═════╣ │ ╠═════╪═════╣ ║\n"
+        + "║ ║ 1   │ 2   ║ │ ║ 1   │ 2   ║ ║\n"
+        + "║ ╚═════╧═════╝ │ ╚═════╧═════╝ ║\n"
+        + "╚═══════════════╧═══════════════╝\n";
+
+    assertTable(outerHeaders, outerData, expected);
+  }
+
   @Test public void simpleReflection() {
     List<Person> people = Arrays.asList( //
         new Person("Big", "Bird", 16, "Big Yellow"), //
