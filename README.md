@@ -16,7 +16,6 @@ String[] headers = { "Test", "Header" };
 String[][] data = {
     { "Foo", "Bar" },
     { "Kit", "Kat" },
-    { "Ping", "Pong" },
 };
 System.out.println(FlipTable.of(headers, data));
 ```
@@ -27,8 +26,6 @@ System.out.println(FlipTable.of(headers, data));
 ║ Foo  │ Bar    ║
 ╟──────┼────────╢
 ║ Kit  │ Kat    ║
-╟──────┼────────╢
-║ Ping │ Pong   ║
 ╚══════╧════════╝
 ```
 
