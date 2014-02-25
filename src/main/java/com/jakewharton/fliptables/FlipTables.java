@@ -76,8 +76,6 @@ public final class FlipTables {
     columnWidths = new int[columns];
     for (int column = 0; column < columns; column++) {
       columnWidths[column] = headers[column].length();
-    }
-    for (int column = 0; column < columns; column++) {
       for (int row = 0; row < data.length; row++) {
         if (data[row].length != columns) {
           throw new IllegalArgumentException(
