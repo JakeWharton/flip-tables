@@ -58,6 +58,22 @@ public class FlipTablesTest {
     assertTable(people, Person.class, expected);
   }
 
+  @Test public void rowColumnMismatchThrows() {
+    String[] headers = { "The", "Headers" };
+    try {
+      String[][] less = { { "Less" } };
+      FlipTables.makeTable(headers, less);
+    } catch (IllegalArgumentException e) {
+      assertThat(e).hasMessage("Row 1 1 columns != 2 columns");
+    }
+    try {
+      String[][] more = { { "More", "Is", "Not", "Less" } };
+      FlipTables.makeTable(headers, more);
+    } catch (IllegalArgumentException e) {
+      assertThat(e).hasMessage("Row 1 4 columns != 2 columns");
+    }
+  }
+
   private static void assertTable(String[] headers, String[][] data, String expected) {
     assertThat(FlipTables.makeTable(headers, data).toString()).isEqualTo(expected);
   }
