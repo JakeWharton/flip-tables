@@ -37,22 +37,55 @@ public class FlipTableTest {
     assertTable(headers, data, expected);
   }
 
-  @Test public void newlines() {
-    String[] headers = { "Test\nNew Lines", "Header" };
-    String[][] data = { //
-        { "Foo\nBar", "Kit\nKat" }, //
-        { "Ping", "Pong" }, //
-    };
+  @Test public void dataNewlineFirstLineLong() {
+    String[] headers = { "One", "Two" };
+    String[][] data = { { "Foo Bar\nBaz", "Two" } };
     String expected = ""
-        + "╔═══════════╤════════╗\n"
-        + "║ Test      │ Header ║\n"
-        + "║ New Lines │        ║\n"
-        + "╠═══════════╪════════╣\n"
-        + "║ Foo       │ Kit    ║\n"
-        + "║ Bar       │ Kat    ║\n"
-        + "╟───────────┼────────╢\n"
-        + "║ Ping      │ Pong   ║\n"
-        + "╚═══════════╧════════╝\n";
+        + "╔═════════╤═════╗\n"
+        + "║ One     │ Two ║\n"
+        + "╠═════════╪═════╣\n"
+        + "║ Foo Bar │ Two ║\n"
+        + "║ Baz     │     ║\n"
+        + "╚═════════╧═════╝\n";
+    assertTable(headers, data, expected);
+  }
+
+  @Test public void dataNewlineFirstLineShort() {
+    String[] headers = { "One", "Two" };
+    String[][] data = { { "Foo\nBar Baz", "Two" } };
+    String expected = ""
+        + "╔═════════╤═════╗\n"
+        + "║ One     │ Two ║\n"
+        + "╠═════════╪═════╣\n"
+        + "║ Foo     │ Two ║\n"
+        + "║ Bar Baz │     ║\n"
+        + "╚═════════╧═════╝\n";
+    assertTable(headers, data, expected);
+  }
+
+  @Test public void headerNewlineFirstLineLong() {
+    String[] headers = { "One Two\nThree", "Four" };
+    String[][] data = { { "One", "Four" } };
+    String expected = ""
+        + "╔═════════╤══════╗\n"
+        + "║ One Two │ Four ║\n"
+        + "║ Three   │      ║\n"
+        + "╠═════════╪══════╣\n"
+        + "║ One     │ Four ║\n"
+        + "╚═════════╧══════╝\n";
+    assertTable(headers, data, expected);
+  }
+
+  @Test public void headerNewlineFirstLineShort() {
+    String[] headers = { "One\nTwo Three", "Four" };
+    String[][] data = { { "One", "Four" } };
+    String expected = ""
+        + "╔═══════════╤══════╗\n"
+        + "║ One       │ Four ║\n"
+        + "║ Two Three │      ║\n"
+        + "╠═══════════╪══════╣\n"
+        + "║ One       │ Four ║\n"
+        + "╚═══════════╧══════╝\n";
     assertTable(headers, data, expected);
   }
 
