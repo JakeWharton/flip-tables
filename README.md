@@ -1,38 +1,16 @@
 Flip (Tables)
 =============
 
-(╯°□°）╯︵ ┻━┻
-
 Because pretty-printing text tables in Java should be easy.
 
-
-
-To Do
------
-
- * Java 8 `Collector`?
- * Java 8 method references
- * Builder
+(╯°□°）╯︵ ┻━┻
 
 
 
 Usage
 -----
-```java
-List<Person> people = Arrays.asList(new Person("Foo", "Bar"), new Person("Kit", "Kat"));
-System.out.println(FlipTables.makeTable(people, Person.class));
-```
-```
-╔═══════════╤══════════╗
-║ FirstName │ LastName ║
-╠═══════════╪══════════╣
-║ Foo       │ Bar      ║
-╟───────────┼──────────╢
-║ Kit       │ Kat      ║
-╚═══════════╧══════════╝
-```
 
-Data can also be specified explicitly:
+A `FlipTable` requires headers and data in string form:
 ```java
 String[] headers = { "Test", "Header" };
 String[][] data = {
@@ -40,8 +18,7 @@ String[][] data = {
     { "Kit", "Kat" },
     { "Ping", "Pong" },
 };
-
-System.out.println(FlipTables.makeTable(headers, data));
+System.out.println(FlipTable.of(headers, data));
 ```
 ```
 ╔══════╤════════╗
@@ -55,12 +32,11 @@ System.out.println(FlipTables.makeTable(headers, data));
 ╚══════╧════════╝
 ```
 
-Empty state:
+They can be empty:
 ```java
 String[] headers = { "Test", "Header" };
 String[][] data = {};
-
-System.out.println(FlipTables.makeTable(headers, data));
+System.out.println(FlipTable.of(headers, data));
 ```
 ```
 ╔══════╤════════╗
@@ -70,15 +46,14 @@ System.out.println(FlipTables.makeTable(headers, data));
 ╚═══════════════╝
 ```
 
-Nested:
+They can be nested:
 ```java
 String[] innerHeaders = { "One", "Two" };
 String[][] innerData = { { "1", "2" } };
-String inner = FlipTables.makeTable(innerHeaders, innerData).toString();
+String inner = FlipTable.of(innerHeaders, innerData).toString();
 String[] headers = { "Left", "Right" };
 String[][] data = { { inner, inner } };
-
-System.out.println(FlipTables.makeTable(headers, data));
+System.out.println(FlipTable.of(headers, data));
 ```
 ```
 ╔═══════════════╤═══════════════╗
@@ -91,6 +66,30 @@ System.out.println(FlipTables.makeTable(headers, data));
 ║ ╚═════╧═════╝ │ ╚═════╧═════╝ ║
 ╚═══════════════╧═══════════════╝
 ```
+
+Helper methods convert from types like `List`:
+```java
+List<Person> people = Arrays.asList(new Person("Foo", "Bar"), new Person("Kit", "Kat"));
+System.out.println(FlipTables.fromList(people, Person.class));
+```
+```
+╔═══════════╤══════════╗
+║ FirstName │ LastName ║
+╠═══════════╪══════════╣
+║ Foo       │ Bar      ║
+╟───────────┼──────────╢
+║ Kit       │ Kat      ║
+╚═══════════╧══════════╝
+```
+
+
+
+To Do
+-----
+
+ * Java 8 `Collector`?
+ * Java 8 method references
+ * Builder
 
 
 
