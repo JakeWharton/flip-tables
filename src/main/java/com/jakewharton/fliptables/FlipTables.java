@@ -79,7 +79,7 @@ public final class FlipTables {
       for (int row = 0; row < data.length; row++) {
         if (data[row].length != columns) {
           throw new IllegalArgumentException(
-              String.format("Row %s length %s != %s columns", row + 1, data[row].length, columns));
+              String.format("Row %s %s columns != %s columns", row + 1, data[row].length, columns));
         }
         columnWidths[column] = Math.max(columnWidths[column], data[row][column].length());
       }
