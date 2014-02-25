@@ -74,6 +74,7 @@ public final class FlipTables {
 
     columns = headers.length;
     columnWidths = new int[columns];
+    int emptyWidth = columns + 1; // Account for dividers.
     for (int column = 0; column < columns; column++) {
       columnWidths[column] = headers[column].length();
       for (int row = 0; row < data.length; row++) {
@@ -83,10 +84,6 @@ public final class FlipTables {
         }
         columnWidths[column] = Math.max(columnWidths[column], data[row][column].length());
       }
-    }
-
-    int emptyWidth = columns + 1; // Account for dividers.
-    for (int column = 0; column < columns; column++) {
       emptyWidth += columnWidths[column];
     }
     this.emptyWidth = emptyWidth;
