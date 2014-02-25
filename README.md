@@ -55,6 +55,21 @@ System.out.println(FlipTables.makeTable(headers, data));
 ╚══════╧════════╝
 ```
 
+Empty state:
+```java
+String[] headers = { "Test", "Header" };
+String[][] data = {};
+
+System.out.println(FlipTables.makeTable(headers, data));
+```
+```
+╔══════╤════════╗
+║ Test │ Header ║
+╠══════╧════════╣
+║ (empty)       ║
+╚═══════════════╝
+```
+
 
 
 License
