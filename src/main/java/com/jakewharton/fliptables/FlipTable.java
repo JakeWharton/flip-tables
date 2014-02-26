@@ -22,6 +22,7 @@ import java.io.StringWriter;
  * @see #of(String[], String[][])
  */
 public final class FlipTable {
+  /** Create a new table with the specified headers and row data. */
   public static FlipTable of(String[] headers, String[][] data) {
     if (headers == null) throw new NullPointerException("headers == null");
     if (data == null) throw new NullPointerException("data == null");
