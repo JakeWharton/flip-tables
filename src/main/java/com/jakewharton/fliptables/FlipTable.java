@@ -1,22 +1,17 @@
 package com.jakewharton.fliptables;
 
 /**
- * A pretty-printed text table.
- * <p>
- * (╯°□°）╯︵ ┻━┻
  * <pre>
- * ╔══════════╤═══════════════════════════╗
- * ║ Key      │ Value                     ║
- * ╠══════════╪═══════════════════════════╣
- * ║ Name     │ Flip (Tables)             ║
- * ╟──────────┼───────────────────────────╢
- * ║ Function │ Pretty-print text tables. ║
- * ╟──────────┼───────────────────────────╢
- * ║ Author   │ Jake Wharton              ║
- * ╚══════════╧═══════════════════════════╝
+ * ╔══════════╤════════════════════════════╗
+ * ║ Key      │ Value                      ║
+ * ╠══════════╪════════════════════════════╣
+ * ║ Name     │ Flip (Tables)              ║
+ * ╟──────────┼────────────────────────────╢
+ * ║ Function │ Pretty-print a text table. ║
+ * ╟──────────┼────────────────────────────╢
+ * ║ Author   │ Jake Wharton               ║
+ * ╚══════════╧════════════════════════════╝
  * </pre>
- *
- * @see #of(String[], String[][])
  */
 public final class FlipTable {
   /** Create a new table with the specified headers and row data. */
