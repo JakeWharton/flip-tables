@@ -14,6 +14,8 @@ package com.jakewharton.fliptables;
  * </pre>
  */
 public final class FlipTable {
+  private static final String EMPTY = "(empty)";
+
   /** Create a new table with the specified headers and row data. */
   public static String of(String[] headers, String[][] data) {
     if (headers == null) throw new NullPointerException("headers == null");
@@ -50,8 +52,9 @@ public final class FlipTable {
       emptyWidth += columnWidths[column];
     }
     this.emptyWidth = emptyWidth;
-    if (emptyWidth < 7) { // 7 == "(empty)".length()
-      columnWidths[columns - 1] += 7 - emptyWidth;
+
+    if (emptyWidth < EMPTY.length()) {
+      columnWidths[columns - 1] += EMPTY.length() - emptyWidth;
     }
   }
 
@@ -61,7 +64,7 @@ public final class FlipTable {
     printData(builder, headers);
     if (data.length == 0) {
       printDivider(builder, "╠═╧═╣");
-      builder.append('║').append(pad(emptyWidth, "(empty)")).append("║\n");
+      builder.append('║').append(pad(emptyWidth, EMPTY)).append("║\n");
       printDivider(builder, "╚═══╝");
     } else {
       for (int row = 0; row < data.length; row++) {
