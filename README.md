@@ -43,11 +43,27 @@ System.out.println(FlipTable.of(headers, data));
 ╚═══════════════╝
 ```
 
-They can be nested:
+Newlines are supported:
+```java
+String[] headers = { "One Two\nThree", "Four" };
+String[][] data = { { "Five", "Six\nSeven Eight" } };
+System.out.println(FlipTable.of(headers, data));
+```
+```
+╔═════════╤══════════════╗
+║ One Two │ Four         ║
+║ Three   │              ║
+╠═════════╪══════════════╣
+║ Five    │ Six          ║
+║         │ Seven Eight  ║
+╚═════════╧══════════════╝
+```
+
+Which means tables can be nested:
 ```java
 String[] innerHeaders = { "One", "Two" };
 String[][] innerData = { { "1", "2" } };
-String inner = FlipTable.of(innerHeaders, innerData).toString();
+String inner = FlipTable.of(innerHeaders, innerData);
 String[] headers = { "Left", "Right" };
 String[][] data = { { inner, inner } };
 System.out.println(FlipTable.of(headers, data));
