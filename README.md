@@ -112,15 +112,6 @@ System.out.println(FlipTableConverters.fromResultSet(resultSet));
 
 
 
-To Do
------
-
- * Java 8 `Collector`?
- * Java 8 method references
- * Builder
-
-
-
 License
 -------
 
