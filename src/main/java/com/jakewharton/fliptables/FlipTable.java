@@ -15,6 +15,7 @@ public final class FlipTable {
   /** Create a new table with the specified headers and row data. */
   public static String of(String[] headers, String[][] data) {
     if (headers == null) throw new NullPointerException("headers == null");
+    if (headers.length == 0) throw new IllegalArgumentException("Headers must not be empty.");
     if (data == null) throw new NullPointerException("data == null");
     return new FlipTable(headers, data).toString();
   }

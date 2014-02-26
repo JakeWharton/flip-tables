@@ -7,7 +7,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
 public class FlipTableTest {
   @Test public void empty() {
     String[] headers = { "Test", "Header" };
-    String[][] data = new String[0][0];
+    String[][] data = { };
     String expected = ""
         + "╔══════╤════════╗\n"
         + "║ Test │ Header ║\n"
@@ -19,7 +19,7 @@ public class FlipTableTest {
 
   @Test public void emptyWide() {
     String[] headers = { "Test", "Headers", "Are", "The", "Best" };
-    String[][] data = new String[0][0];
+    String[][] data = { };
     String expected = ""
         + "╔══════╤═════════╤═════╤═════╤══════╗\n"
         + "║ Test │ Headers │ Are │ The │ Best ║\n"
@@ -31,7 +31,7 @@ public class FlipTableTest {
 
   @Test public void emptyThinOneColumn() {
     String[] headers = { "A" };
-    String[][] data = new String[0][0];
+    String[][] data = { };
     String expected = ""
         + "╔═════════╗\n"
         + "║ A       ║\n"
@@ -43,7 +43,7 @@ public class FlipTableTest {
 
   @Test public void emptyThinTwoColumns() {
     String[] headers = { "A", "B" };
-    String[][] data = new String[0][0];
+    String[][] data = { };
     String expected = ""
         + "╔═══╤═════╗\n"
         + "║ A │ B   ║\n"
@@ -157,6 +157,30 @@ public class FlipTableTest {
       FlipTable.of(headers, more);
     } catch (IllegalArgumentException e) {
       assertThat(e).hasMessage("Row 1's 4 columns != 2 columns");
+    }
+  }
+
+  @Test public void nullHeadersThrows() {
+    try {
+      FlipTable.of(null, new String[0][0]);
+    } catch (NullPointerException e) {
+      assertThat(e).hasMessage("headers == null");
+    }
+  }
+
+  @Test public void emptyHeadersThrows() {
+    try {
+      FlipTable.of(new String[0], new String[0][0]);
+    } catch (IllegalArgumentException e) {
+      assertThat(e).hasMessage("Headers must not be empty.");
+    }
+  }
+
+  @Test public void nullDataThrows() {
+    try {
+      FlipTable.of(new String[1], null);
+    } catch (NullPointerException e) {
+      assertThat(e).hasMessage("data == null");
     }
   }
 }
