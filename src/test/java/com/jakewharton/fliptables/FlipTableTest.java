@@ -104,7 +104,7 @@ public class FlipTableTest {
     String[][] data = { { "One", "Four" } };
     String expected = ""
         + "╔═════════╤══════╗\n"
-        + "║ One Two │ Four ║\n"
+        + "║ One Two │ Four ║\n" // TODO bottom align this!
         + "║ Three   │      ║\n"
         + "╠═════════╪══════╣\n"
         + "║ One     │ Four ║\n"
@@ -117,7 +117,7 @@ public class FlipTableTest {
     String[][] data = { { "One", "Four" } };
     String expected = ""
         + "╔═══════════╤══════╗\n"
-        + "║ One       │ Four ║\n"
+        + "║ One       │ Four ║\n" // TODO bottom align this!
         + "║ Two Three │      ║\n"
         + "╠═══════════╪══════╣\n"
         + "║ One       │ Four ║\n"
