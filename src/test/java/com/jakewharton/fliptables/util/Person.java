@@ -1,4 +1,4 @@
-package com.jakewharton.fliptables;
+package com.jakewharton.fliptables.util;
 
 public final class Person {
   private final String firstName;

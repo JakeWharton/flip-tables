@@ -1,6 +1,9 @@
 package com.jakewharton.fliptables;
 
 import java.lang.reflect.Method;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -17,6 +20,10 @@ public final class FlipTables {
     }
   };
 
+  /**
+   * Create a {@link FlipTable} from a group of objects. The public accessor methods on the class
+   * type will be used as columns.
+   */
   public static <T> FlipTable fromIterable(Iterable<T> rows, Class<T> rowType) {
     if (rows == null) throw new NullPointerException("rows == null");
     if (rowType == null) throw new NullPointerException("rowType == null");
@@ -48,6 +55,33 @@ public final class FlipTables {
       }
       data.add(rowData);
     }
+
+    String[] headerArray = headers.toArray(new String[headers.size()]);
+    String[][] dataArray = data.toArray(new String[data.size()][0]);
+    return new FlipTable(headerArray, dataArray);
+  }
+
+  /** Create a {@link FlipTable} from a {@link ResultSet}. */
+  public static FlipTable fromResultSet(ResultSet resultSet) throws SQLException {
+    if (resultSet == null) throw new NullPointerException("resultSet == null");
+    if (!resultSet.isBeforeFirst()) throw new IllegalStateException("Result set not at first.");
+
+    List<String> headers = new ArrayList<>();
+    ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+    int columnCount = resultSetMetaData.getColumnCount();
+    for (int column = 0; column < columnCount; column++) {
+      headers.add(resultSetMetaData.getColumnName(column));
+    }
+
+    List<String[]> data = new ArrayList<>();
+    while (resultSet.next()) {
+      String[] rowData = new String[columnCount];
+      for (int column = 0; column < columnCount; column++) {
+        rowData[column] = resultSet.getString(column + 1);
+      }
+      data.add(rowData);
+    }
+
     String[] headerArray = headers.toArray(new String[headers.size()]);
     String[][] dataArray = data.toArray(new String[data.size()][0]);
     return new FlipTable(headerArray, dataArray);
