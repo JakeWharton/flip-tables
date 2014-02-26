@@ -150,13 +150,13 @@ public class FlipTableTest {
       String[][] less = { { "Less" } };
       FlipTable.of(headers, less);
     } catch (IllegalArgumentException e) {
-      assertThat(e).hasMessage("Row 1 1 columns != 2 columns");
+      assertThat(e).hasMessage("Row 1's 1 columns != 2 columns");
     }
     try {
       String[][] more = { { "More", "Is", "Not", "Less" } };
       FlipTable.of(headers, more);
     } catch (IllegalArgumentException e) {
-      assertThat(e).hasMessage("Row 1 4 columns != 2 columns");
+      assertThat(e).hasMessage("Row 1's 4 columns != 2 columns");
     }
   }
 }

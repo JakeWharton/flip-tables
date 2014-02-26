@@ -31,25 +31,26 @@ public final class FlipTable {
 
     columns = headers.length;
     columnWidths = new int[columns];
-    int emptyWidth = 3 * (columns - 1); // Account for column dividers and spacing.
-    for (int column = 0; column < columns; column++) {
-      for (String headerLine : headers[column].split("\\n")) {
-        columnWidths[column] = Math.max(columnWidths[column], headerLine.length());
+    for (int row = -1; row < data.length; row++) {
+      String[] rowData = (row == -1) ? headers : data[row]; // Hack to parse headers too.
+      if (rowData.length != columns) {
+        throw new IllegalArgumentException(
+            String.format("Row %s's %s columns != %s columns", row + 1, rowData.length, columns));
       }
-      for (int row = 0; row < data.length; row++) {
-        if (data[row].length != columns) {
-          throw new IllegalArgumentException(
-              String.format("Row %s %s columns != %s columns", row + 1, data[row].length, columns));
-        }
-        for (String cellLine : data[row][column].split("\\n")) {
-          columnWidths[column] = Math.max(columnWidths[column], cellLine.length());
+      for (int column = 0; column < columns; column++) {
+        for (String rowDataLine : rowData[column].split("\\n")) {
+          columnWidths[column] = Math.max(columnWidths[column], rowDataLine.length());
         }
       }
-      emptyWidth += columnWidths[column];
+    }
+
+    int emptyWidth = 3 * (columns - 1); // Account for column dividers and their spacing.
+    for (int columnWidth : columnWidths) {
+      emptyWidth += columnWidth;
     }
     this.emptyWidth = emptyWidth;
 
-    if (emptyWidth < EMPTY.length()) {
+    if (emptyWidth < EMPTY.length()) { // Make sure we're wide enough for the empty text.
       columnWidths[columns - 1] += EMPTY.length() - emptyWidth;
     }
   }
