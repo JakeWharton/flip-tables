@@ -92,11 +92,11 @@ public class FlipTableConvertersTest {
         + "╔════════════╤═══════════╤═════╤═════════╗\n"
         + "║ First Name │ Last Name │ Age │ Type    ║\n"
         + "╠════════════╪═══════════╪═════╪═════════╣\n"
-        + "║ Big        │ Bird      │ 16  │ Costume ║\n"
+        + "║ Big        │ Bird      │ 16  │ COSTUME ║\n"
         + "╟────────────┼───────────┼─────┼─────────╢\n"
-        + "║ Joe        │ Smith     │ 42  │ Human   ║\n"
+        + "║ Joe        │ Smith     │ 42  │ HUMAN   ║\n"
         + "╟────────────┼───────────┼─────┼─────────╢\n"
-        + "║ Oscar      │ Grouchant │ 8   │ Puppet  ║\n"
+        + "║ Oscar      │ Grouchant │ 8   │ PUPPET  ║\n"
         + "╚════════════╧═══════════╧═════╧═════════╝\n";
     String table = FlipTableConverters.fromObjects(headers, data);
     assertThat(table).isEqualTo(expected);

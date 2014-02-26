@@ -110,6 +110,28 @@ System.out.println(FlipTableConverters.fromResultSet(resultSet));
 ╚════════════╧═══════════╝
 ```
 
+Arbitrary objects are also supported:
+```java
+String[] headers = { "First Name", "Last Name", "Age", "Type" };
+Object[][] data = {
+    { "Big", "Bird", 16, PersonType.COSTUME },
+    { "Joe", "Smith", 42, PersonType.HUMAN },
+    { "Oscar", "Grouchant", 8, PersonType.PUPPET }
+};
+System.out.println(FlipTableConverters.fromObjects(headers, data));
+```
+```
+╔════════════╤═══════════╤═════╤═════════╗
+║ First Name │ Last Name │ Age │ Type    ║
+╠════════════╪═══════════╪═════╪═════════╣
+║ Big        │ Bird      │ 16  │ COSTUME ║
+╟────────────┼───────────┼─────┼─────────╢
+║ Joe        │ Smith     │ 42  │ HUMAN   ║
+╟────────────┼───────────┼─────┼─────────╢
+║ Oscar      │ Grouchant │ 8   │ PUPPET  ║
+╚════════════╧═══════════╧═════╧═════════╝
+```
+
 
 
 License
