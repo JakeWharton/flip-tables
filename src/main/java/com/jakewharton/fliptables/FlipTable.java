@@ -33,7 +33,7 @@ public final class FlipTable {
 
     columns = headers.length;
     columnWidths = new int[columns];
-    int emptyWidth = columns + 1; // Account for dividers.
+    int emptyWidth = 3 * (columns - 1); // Account for column dividers and spacing.
     for (int column = 0; column < columns; column++) {
       for (String headerLine : headers[column].split("\\n")) {
         columnWidths[column] = Math.max(columnWidths[column], headerLine.length());
@@ -50,6 +50,9 @@ public final class FlipTable {
       emptyWidth += columnWidths[column];
     }
     this.emptyWidth = emptyWidth;
+    if (emptyWidth < 7) { // 7 == "(empty)".length()
+      columnWidths[columns - 1] += 7 - emptyWidth;
+    }
   }
 
   @Override public String toString() {

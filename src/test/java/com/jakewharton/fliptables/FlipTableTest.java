@@ -17,6 +17,42 @@ public class FlipTableTest {
     assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
+  @Test public void emptyWide() {
+    String[] headers = { "Test", "Headers", "Are", "The", "Best" };
+    String[][] data = new String[0][0];
+    String expected = ""
+        + "╔══════╤═════════╤═════╤═════╤══════╗\n"
+        + "║ Test │ Headers │ Are │ The │ Best ║\n"
+        + "╠══════╧═════════╧═════╧═════╧══════╣\n"
+        + "║ (empty)                           ║\n"
+        + "╚═══════════════════════════════════╝\n";
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
+  }
+
+  @Test public void emptyThinOneColumn() {
+    String[] headers = { "A" };
+    String[][] data = new String[0][0];
+    String expected = ""
+        + "╔═════════╗\n"
+        + "║ A       ║\n"
+        + "╠═════════╣\n"
+        + "║ (empty) ║\n"
+        + "╚═════════╝\n";
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
+  }
+
+  @Test public void emptyThinTwoColumns() {
+    String[] headers = { "A", "B" };
+    String[][] data = new String[0][0];
+    String expected = ""
+        + "╔═══╤═════╗\n"
+        + "║ A │ B   ║\n"
+        + "╠═══╧═════╣\n"
+        + "║ (empty) ║\n"
+        + "╚═════════╝\n";
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
+  }
+
   @Test public void simple() {
     String[] headers = { "Hi", "Header" };
     String[][] data = { //
