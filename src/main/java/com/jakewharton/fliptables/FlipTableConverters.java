@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** Helper methods which convert various types into those required for {@link FlipTable}. */
-public final class FlipTables {
+public final class FlipTableConverters {
   private static final Pattern METHOD = Pattern.compile("^(?:get|is|has)([A-Z][a-zA-Z0-9]*)+$");
   private static final Comparator<Method> METHOD_COMPARATOR = new Comparator<Method>() {
     @Override public int compare(Method o1, Method o2) {
@@ -20,10 +19,7 @@ public final class FlipTables {
     }
   };
 
-  /**
-   * Create a {@link FlipTable} from a group of objects. The public accessor methods on the class
-   * type will be used as columns.
-   */
+  /** Create a table from a group of objects. Accessor methods on the type will be the columns. */
   public static <T> String fromIterable(Iterable<T> rows, Class<T> rowType) {
     if (rows == null) throw new NullPointerException("rows == null");
     if (rowType == null) throw new NullPointerException("rowType == null");
@@ -61,8 +57,8 @@ public final class FlipTables {
     return FlipTable.of(headerArray, dataArray);
   }
 
-  /** Create a {@link FlipTable} from a {@link ResultSet}. */
-  public static String fromResultSet(ResultSet resultSet) throws SQLException {
+  /** Create a {@link FlipTable} from a {@link java.sql.ResultSet}. */
+  static String fromResultSet(ResultSet resultSet) throws SQLException {
     if (resultSet == null) throw new NullPointerException("resultSet == null");
     if (!resultSet.isBeforeFirst()) throw new IllegalStateException("Result set not at first.");
 
@@ -87,7 +83,7 @@ public final class FlipTables {
     return FlipTable.of(headerArray, dataArray);
   }
 
-  private FlipTables() {
+  private FlipTableConverters() {
     throw new AssertionError("No instances.");
   }
 }

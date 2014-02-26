@@ -10,8 +10,8 @@ import org.junit.Test;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class FlipTablesTest {
-  @Test public void simpleReflection() {
+public class FlipTableConvertersTest {
+  @Test public void simpleIterator() {
     List<Person> people = Arrays.asList( //
         new Person("Big", "Bird", 16, "Big Yellow"), //
         new Person("Joe", "Smith", 42, "Proposition Joe"), //
@@ -27,7 +27,7 @@ public class FlipTablesTest {
         + "╟─────┼───────────┼───────────┼──────────────────╢\n"
         + "║ 8   │ Oscar     │ Grouchant │ Oscar The Grouch ║\n"
         + "╚═════╧═══════════╧═══════════╧══════════════════╝\n";
-    String table = FlipTables.fromIterable(people, Person.class);
+    String table = FlipTableConverters.fromIterable(people, Person.class);
     assertThat(table).isEqualTo(expected);
   }
 
@@ -49,7 +49,7 @@ public class FlipTablesTest {
         + "╟─────────┼───────┼─────────╢\n"
         + "║ Three   │ 3     │ Tres    ║\n"
         + "╚═════════╧═══════╧═════════╝\n";
-    String table = FlipTables.fromResultSet(resultSet);
+    String table = FlipTableConverters.fromResultSet(resultSet);
     assertThat(table).isEqualTo(expected);
   }
 }

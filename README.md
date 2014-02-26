@@ -83,7 +83,7 @@ System.out.println(FlipTable.of(headers, data));
 Helper methods convert from types like lists:
 ```java
 List<Person> people = Arrays.asList(new Person("Foo", "Bar"), new Person("Kit", "Kat"));
-System.out.println(FlipTables.fromIterable(people, Person.class));
+System.out.println(FlipTableConverters.fromIterable(people, Person.class));
 ```
 ```
 ╔═══════════╤══════════╗
@@ -98,7 +98,7 @@ System.out.println(FlipTables.fromIterable(people, Person.class));
 Or a database result:
 ```java
 ResultSet resultSet = statement.executeQuery("SELECT first_name, last_name FROM users");
-System.out.println(FlipTables.fromResultSet(resultSet));
+System.out.println(FlipTableConverters.fromResultSet(resultSet));
 ```
 ```
 ╔════════════╤═══════════╗
