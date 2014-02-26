@@ -20,7 +20,10 @@ public final class FlipTableConverters {
     }
   };
 
-  /** Create a table from a group of objects. Accessor methods on the type will be the columns. */
+  /**
+   * Create a table from a group of objects. Public accessor methods on the class type with no
+   * arguments will be used as the columns.
+   */
   public static <T> String fromIterable(Iterable<T> rows, Class<T> rowType) {
     if (rows == null) throw new NullPointerException("rows == null");
     if (rowType == null) throw new NullPointerException("rowType == null");
@@ -58,7 +61,7 @@ public final class FlipTableConverters {
     return FlipTable.of(headerArray, dataArray);
   }
 
-  /** Create a {@link FlipTable} from a {@link java.sql.ResultSet}. */
+  /** Create a table from a {@link ResultSet}. */
   static String fromResultSet(ResultSet resultSet) throws SQLException {
     if (resultSet == null) throw new NullPointerException("resultSet == null");
     if (!resultSet.isBeforeFirst()) throw new IllegalStateException("Result set not at first.");
