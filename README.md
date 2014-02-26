@@ -1,5 +1,5 @@
-Flip (Tables)
-=============
+Flip Tables
+===========
 
 Because pretty-printing text tables in Java should be easy.
 
