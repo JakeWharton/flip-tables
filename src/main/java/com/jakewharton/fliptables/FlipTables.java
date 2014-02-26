@@ -24,7 +24,7 @@ public final class FlipTables {
    * Create a {@link FlipTable} from a group of objects. The public accessor methods on the class
    * type will be used as columns.
    */
-  public static <T> FlipTable fromIterable(Iterable<T> rows, Class<T> rowType) {
+  public static <T> String fromIterable(Iterable<T> rows, Class<T> rowType) {
     if (rows == null) throw new NullPointerException("rows == null");
     if (rowType == null) throw new NullPointerException("rowType == null");
 
@@ -58,11 +58,11 @@ public final class FlipTables {
 
     String[] headerArray = headers.toArray(new String[headers.size()]);
     String[][] dataArray = data.toArray(new String[data.size()][0]);
-    return new FlipTable(headerArray, dataArray);
+    return FlipTable.of(headerArray, dataArray);
   }
 
   /** Create a {@link FlipTable} from a {@link ResultSet}. */
-  public static FlipTable fromResultSet(ResultSet resultSet) throws SQLException {
+  public static String fromResultSet(ResultSet resultSet) throws SQLException {
     if (resultSet == null) throw new NullPointerException("resultSet == null");
     if (!resultSet.isBeforeFirst()) throw new IllegalStateException("Result set not at first.");
 
@@ -84,7 +84,7 @@ public final class FlipTables {
 
     String[] headerArray = headers.toArray(new String[headers.size()]);
     String[][] dataArray = data.toArray(new String[data.size()][0]);
-    return new FlipTable(headerArray, dataArray);
+    return FlipTable.of(headerArray, dataArray);
   }
 
   private FlipTables() {

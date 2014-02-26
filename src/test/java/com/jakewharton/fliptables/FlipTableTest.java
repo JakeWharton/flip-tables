@@ -14,7 +14,7 @@ public class FlipTableTest {
         + "╠══════╧════════╣\n"
         + "║ (empty)       ║\n"
         + "╚═══════════════╝\n";
-    assertTable(headers, data, expected);
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
   @Test public void simple() {
@@ -34,7 +34,7 @@ public class FlipTableTest {
         + "╟──────┼────────╢\n"
         + "║ Ping │ Pong   ║\n"
         + "╚══════╧════════╝\n";
-    assertTable(headers, data, expected);
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
   @Test public void dataNewlineFirstLineLong() {
@@ -47,7 +47,7 @@ public class FlipTableTest {
         + "║ Foo Bar │ Two ║\n"
         + "║ Baz     │     ║\n"
         + "╚═════════╧═════╝\n";
-    assertTable(headers, data, expected);
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
   @Test public void dataNewlineFirstLineShort() {
@@ -60,7 +60,7 @@ public class FlipTableTest {
         + "║ Foo     │ Two ║\n"
         + "║ Bar Baz │     ║\n"
         + "╚═════════╧═════╝\n";
-    assertTable(headers, data, expected);
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
   @Test public void headerNewlineFirstLineLong() {
@@ -73,7 +73,7 @@ public class FlipTableTest {
         + "╠═════════╪══════╣\n"
         + "║ One     │ Four ║\n"
         + "╚═════════╧══════╝\n";
-    assertTable(headers, data, expected);
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
   @Test public void headerNewlineFirstLineShort() {
@@ -86,13 +86,13 @@ public class FlipTableTest {
         + "╠═══════════╪══════╣\n"
         + "║ One       │ Four ║\n"
         + "╚═══════════╧══════╝\n";
-    assertTable(headers, data, expected);
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
   @Test public void nested() {
     String[] innerHeaders = { "One", "Two" };
     String[][] innerData = { { "1", "2" } };
-    String nested = FlipTable.of(innerHeaders, innerData).toString();
+    String nested = FlipTable.of(innerHeaders, innerData);
     String[] outerHeaders = { "Left", "Right" };
     String[][] outerData = { { nested, nested } };
     String expected = ""
@@ -105,8 +105,7 @@ public class FlipTableTest {
         + "║ ║ 1   │ 2   ║ │ ║ 1   │ 2   ║ ║\n"
         + "║ ╚═════╧═════╝ │ ╚═════╧═════╝ ║\n"
         + "╚═══════════════╧═══════════════╝\n";
-
-    assertTable(outerHeaders, outerData, expected);
+    assertThat(FlipTable.of(outerHeaders, outerData)).isEqualTo(expected);
   }
 
   @Test public void rowColumnMismatchThrows() {
@@ -123,10 +122,5 @@ public class FlipTableTest {
     } catch (IllegalArgumentException e) {
       assertThat(e).hasMessage("Row 1 4 columns != 2 columns");
     }
-  }
-
-  private static void assertTable(String[] headers, String[][] data, String expected) {
-    // Leading new line makes the output and compare view look better.
-    assertThat("\n" + FlipTable.of(headers, data).toString()).isEqualTo("\n" + expected);
   }
 }

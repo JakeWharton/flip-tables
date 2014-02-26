@@ -1,8 +1,5 @@
 package com.jakewharton.fliptables;
 
-import java.io.IOException;
-import java.io.StringWriter;
-
 /**
  * A pretty-printed text table.
  * <p>
@@ -23,10 +20,10 @@ import java.io.StringWriter;
  */
 public final class FlipTable {
   /** Create a new table with the specified headers and row data. */
-  public static FlipTable of(String[] headers, String[][] data) {
+  public static String of(String[] headers, String[][] data) {
     if (headers == null) throw new NullPointerException("headers == null");
     if (data == null) throw new NullPointerException("data == null");
-    return new FlipTable(headers, data);
+    return new FlipTable(headers, data).toString();
   }
 
   private final String[] headers;
@@ -35,7 +32,7 @@ public final class FlipTable {
   private final int[] columnWidths;
   private final int emptyWidth;
 
-  FlipTable(String[] headers, String[][] data) {
+  private FlipTable(String[] headers, String[][] data) {
     this.headers = headers;
     this.data = data;
 
@@ -61,32 +58,24 @@ public final class FlipTable {
   }
 
   @Override public String toString() {
-    try {
-      StringWriter writer = new StringWriter();
-      writeTo(writer);
-      return writer.toString();
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  public void writeTo(Appendable out) throws IOException {
-    printDivider(out, "╔═╤═╗");
-    printData(out, headers);
+    StringBuilder builder = new StringBuilder();
+    printDivider(builder, "╔═╤═╗");
+    printData(builder, headers);
     if (data.length == 0) {
-      printDivider(out, "╠═╧═╣");
-      out.append('║').append(pad(emptyWidth, "(empty)")).append("║\n");
-      printDivider(out, "╚═══╝");
+      printDivider(builder, "╠═╧═╣");
+      builder.append('║').append(pad(emptyWidth, "(empty)")).append("║\n");
+      printDivider(builder, "╚═══╝");
     } else {
       for (int row = 0; row < data.length; row++) {
-        printDivider(out, row == 0 ? "╠═╪═╣" : "╟─┼─╢");
-        printData(out, data[row]);
+        printDivider(builder, row == 0 ? "╠═╪═╣" : "╟─┼─╢");
+        printData(builder, data[row]);
       }
-      printDivider(out, "╚═╧═╝");
+      printDivider(builder, "╚═╧═╝");
     }
+    return builder.toString();
   }
 
-  private void printDivider(Appendable out, String format) throws IOException {
+  private void printDivider(StringBuilder out, String format) {
     for (int column = 0; column < columns; column++) {
       out.append(column == 0 ? format.charAt(0) : format.charAt(2));
       out.append(pad(columnWidths[column], "").replace(' ', format.charAt(1)));
@@ -94,7 +83,7 @@ public final class FlipTable {
     out.append(format.charAt(4)).append('\n');
   }
 
-  private void printData(Appendable out, String[] data) throws IOException {
+  private void printData(StringBuilder out, String[] data) {
     for (int line = 0, lines = 1; line < lines; line++) {
       for (int column = 0; column < columns; column++) {
         out.append(column == 0 ? '║' : '│');

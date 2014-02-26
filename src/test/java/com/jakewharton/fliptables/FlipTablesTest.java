@@ -27,8 +27,8 @@ public class FlipTablesTest {
         + "╟─────┼───────────┼───────────┼──────────────────╢\n"
         + "║ 8   │ Oscar     │ Grouchant │ Oscar The Grouch ║\n"
         + "╚═════╧═══════════╧═══════════╧══════════════════╝\n";
-    FlipTable table = FlipTables.fromIterable(people, Person.class);
-    assertTable(table, expected);
+    String table = FlipTables.fromIterable(people, Person.class);
+    assertThat(table).isEqualTo(expected);
   }
 
   @Test public void simpleResultSet() throws SQLException {
@@ -49,12 +49,7 @@ public class FlipTablesTest {
         + "╟─────────┼───────┼─────────╢\n"
         + "║ Three   │ 3     │ Tres    ║\n"
         + "╚═════════╧═══════╧═════════╝\n";
-    FlipTable table = FlipTables.fromResultSet(resultSet);
-    assertTable(table, expected);
-  }
-
-  private static <T> void assertTable(FlipTable table, String expected) {
-    // Leading new line makes the output and compare view look better.
-    assertThat("\n" + table.toString()).isEqualTo("\n" + expected);
+    String table = FlipTables.fromResultSet(resultSet);
+    assertThat(table).isEqualTo(expected);
   }
 }
