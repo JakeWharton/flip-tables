@@ -20,6 +20,24 @@ public final class FlipTableConverters {
     }
   };
 
+  /** Create a table from an array of objects using {@link String#valueOf}. */
+  public static String fromObjects(String[] headers, Object[][] data) {
+    if (headers == null) throw new NullPointerException("headers == null");
+    if (data == null) throw new NullPointerException("data == null");
+
+    List<String[]> stringData = new ArrayList<>();
+    for (Object[] row : data) {
+      String[] stringRow = new String[row.length];
+      for (int column = 0; column < row.length; column++) {
+        stringRow[column] = String.valueOf(row[column]);
+      }
+      stringData.add(stringRow);
+    }
+
+    String[][] dataArray = stringData.toArray(new String[stringData.size()][]);
+    return FlipTable.of(headers, dataArray);
+  }
+
   /**
    * Create a table from a group of objects. Public accessor methods on the class type with no
    * arguments will be used as the columns.

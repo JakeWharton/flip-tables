@@ -2,6 +2,7 @@ package com.jakewharton.fliptables;
 
 import com.jakewharton.fliptables.util.FakeResultSet;
 import com.jakewharton.fliptables.util.Person;
+import com.jakewharton.fliptables.util.PersonType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -50,6 +51,27 @@ public class FlipTableConvertersTest {
         + "║ Three   │ 3     │ Tres    ║\n"
         + "╚═════════╧═══════╧═════════╝\n";
     String table = FlipTableConverters.fromResultSet(resultSet);
+    assertThat(table).isEqualTo(expected);
+  }
+
+  @Test public void simpleObjects() {
+    String[] headers = { "First Name", "Last Name", "Age", "Type" };
+    Object[][] data = { //
+        { "Big", "Bird", 16, PersonType.COSTUME }, //
+        { "Joe", "Smith", 42, PersonType.HUMAN }, //
+        { "Oscar", "Grouchant", 8, PersonType.PUPPET } //
+    };
+    String expected = ""
+        + "╔════════════╤═══════════╤═════╤═════════╗\n"
+        + "║ First Name │ Last Name │ Age │ Type    ║\n"
+        + "╠════════════╪═══════════╪═════╪═════════╣\n"
+        + "║ Big        │ Bird      │ 16  │ Costume ║\n"
+        + "╟────────────┼───────────┼─────┼─────────╢\n"
+        + "║ Joe        │ Smith     │ 42  │ Human   ║\n"
+        + "╟────────────┼───────────┼─────┼─────────╢\n"
+        + "║ Oscar      │ Grouchant │ 8   │ Puppet  ║\n"
+        + "╚════════════╧═══════════╧═════╧═════════╝\n";
+    String table = FlipTableConverters.fromObjects(headers, data);
     assertThat(table).isEqualTo(expected);
   }
 }
