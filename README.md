@@ -50,13 +50,13 @@ String[][] data = { { "Five", "Six\nSeven Eight" } };
 System.out.println(FlipTable.of(headers, data));
 ```
 ```
-╔═════════╤══════════════╗
-║ One Two │ Four         ║
-║ Three   │              ║
-╠═════════╪══════════════╣
-║ Five    │ Six          ║
-║         │ Seven Eight  ║
-╚═════════╧══════════════╝
+╔═════════╤═════════════╗
+║ One Two │ Four        ║
+║ Three   │             ║
+╠═════════╪═════════════╣
+║ Five    │ Six         ║
+║         │ Seven Eight ║
+╚═════════╧═════════════╝
 ```
 
 Which means tables can be nested:
