@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/** Helper methods for creating {@link FlipTable tables} from various different data sets. */
 public final class FlipTableConverters {
   private static final Pattern METHOD = Pattern.compile("^(?:get|is|has)([A-Z][a-zA-Z0-9]*)+$");
   private static final Comparator<Method> METHOD_COMPARATOR = new Comparator<Method>() {
