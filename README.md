@@ -79,7 +79,7 @@ System.out.println(FlipTables.fromIterable(people, Person.class));
 ╚═══════════╧══════════╝
 ```
 
-Or a database result;
+Or a database result:
 ```java
 ResultSet resultSet = statement.executeQuery("SELECT first_name, last_name FROM users");
 System.out.println(FlipTables.fromResultSet(resultSet));
