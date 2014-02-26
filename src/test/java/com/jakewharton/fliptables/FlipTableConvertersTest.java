@@ -6,6 +6,7 @@ import com.jakewharton.fliptables.util.PersonType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 
@@ -32,6 +33,18 @@ public class FlipTableConvertersTest {
     assertThat(table).isEqualTo(expected);
   }
 
+  @Test public void emptyIterator() {
+    List<Person> people = Collections.emptyList();
+    String expected = ""
+        + "╔═════╤═══════════╤══════════╤══════════╗\n"
+        + "║ Age │ FirstName │ LastName │ NickName ║\n"
+        + "╠═════╧═══════════╧══════════╧══════════╣\n"
+        + "║ (empty)                               ║\n"
+        + "╚═══════════════════════════════════════╝\n";
+    String table = FlipTableConverters.fromIterable(people, Person.class);
+    assertThat(table).isEqualTo(expected);
+  }
+
   @Test public void simpleResultSet() throws SQLException {
     String[] headers = { "English", "Digit", "Spanish" };
     String[][] data = {
@@ -54,6 +67,20 @@ public class FlipTableConvertersTest {
     assertThat(table).isEqualTo(expected);
   }
 
+  @Test public void emptyResultSet() throws SQLException {
+    String[] headers = { "English", "Digit", "Spanish" };
+    String[][] data = {};
+    ResultSet resultSet = new FakeResultSet(headers, data);
+    String expected = ""
+        + "╔═════════╤═══════╤═════════╗\n"
+        + "║ English │ Digit │ Spanish ║\n"
+        + "╠═════════╧═══════╧═════════╣\n"
+        + "║ (empty)                   ║\n"
+        + "╚═══════════════════════════╝\n";
+    String table = FlipTableConverters.fromResultSet(resultSet);
+    assertThat(table).isEqualTo(expected);
+  }
+
   @Test public void simpleObjects() {
     String[] headers = { "First Name", "Last Name", "Age", "Type" };
     Object[][] data = { //
@@ -71,6 +98,19 @@ public class FlipTableConvertersTest {
         + "╟────────────┼───────────┼─────┼─────────╢\n"
         + "║ Oscar      │ Grouchant │ 8   │ Puppet  ║\n"
         + "╚════════════╧═══════════╧═════╧═════════╝\n";
+    String table = FlipTableConverters.fromObjects(headers, data);
+    assertThat(table).isEqualTo(expected);
+  }
+
+  @Test public void emptyObjects() {
+    String[] headers = { "First Name", "Last Name", "Age", "Type" };
+    Object[][] data = {};
+    String expected = ""
+        + "╔════════════╤═══════════╤═════╤══════╗\n"
+        + "║ First Name │ Last Name │ Age │ Type ║\n"
+        + "╠════════════╧═══════════╧═════╧══════╣\n"
+        + "║ (empty)                             ║\n"
+        + "╚═════════════════════════════════════╝\n";
     String table = FlipTableConverters.fromObjects(headers, data);
     assertThat(table).isEqualTo(expected);
   }
