@@ -3,7 +3,7 @@ package com.jakewharton.fliptables.util;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class AbstractResultSetMetaData implements ResultSetMetaData {
+public abstract class AbstractResultSetMetaData implements ResultSetMetaData {
   @Override public int getColumnCount() throws SQLException {
     throw new UnsupportedOperationException();
   }
