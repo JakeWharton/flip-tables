@@ -53,7 +53,7 @@ public final class FlipTableConverters {
     }
 
     String[] headerArray = headers.toArray(new String[headers.size()]);
-    String[][] dataArray = data.toArray(new String[data.size()][0]);
+    String[][] dataArray = data.toArray(new String[data.size()][]);
     return FlipTable.of(headerArray, dataArray);
   }
 
@@ -79,7 +79,7 @@ public final class FlipTableConverters {
     }
 
     String[] headerArray = headers.toArray(new String[headers.size()]);
-    String[][] dataArray = data.toArray(new String[data.size()][0]);
+    String[][] dataArray = data.toArray(new String[data.size()][]);
     return FlipTable.of(headerArray, dataArray);
   }
 
