@@ -134,6 +134,14 @@ System.out.println(FlipTableConverters.fromObjects(headers, data));
 
 
 
+Download
+--------
+
+Download the [latest jar][1] or reference on Maven central as
+`com.jakewharton.fliptables:fliptables:1.0.0`.
+
+
+
 License
 -------
 
@@ -150,3 +158,7 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+
+
+ [1]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.jakewharton.fliptables%22%20a%3A%22fliptables%22
