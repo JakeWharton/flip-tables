@@ -11,7 +11,7 @@
 
   <groupId>com.jakewharton.fliptables</groupId>
   <artifactId>fliptables</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>Flip Tables</name>
   <description>Because pretty-printing text tables in Java should be easy.</description>
