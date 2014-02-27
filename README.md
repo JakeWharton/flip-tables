@@ -161,4 +161,4 @@ License
 
 
 
- [1]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.jakewharton.fliptables%22%20a%3A%22fliptables%22
+ [1]: http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.jakewharton.fliptables&a=fliptables&v=LATEST
