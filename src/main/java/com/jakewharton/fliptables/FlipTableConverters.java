@@ -56,6 +56,8 @@ public final class FlipTableConverters {
       if (declaratedMethod.getReturnType() == void.class) continue;
       Matcher matcher = METHOD.matcher(declaratedMethod.getName());
       if (!matcher.matches()) continue;
+
+      declaratedMethod.setAccessible(true);
       methods.add(declaratedMethod);
       headers.add(matcher.group(1));
     }
