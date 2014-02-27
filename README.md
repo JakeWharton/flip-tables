@@ -138,7 +138,7 @@ Download
 --------
 
 Download the [latest jar][1] or reference on Maven central as
-`com.jakewharton.fliptables:fliptables:1.0.0`.
+`com.jakewharton.fliptables:fliptables:1.0.1`.
 
 
 
