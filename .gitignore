@@ -4,3 +4,6 @@
 classes
 out
 target
+
+pom.xml.*
+release.properties
