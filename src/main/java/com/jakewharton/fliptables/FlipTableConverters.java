@@ -52,7 +52,7 @@ public final class FlipTableConverters {
     List<Method> methods = new ArrayList<>();
     List<String> headers = new ArrayList<>();
     for (Method declaratedMethod : declaredMethods) {
-      if (declaratedMethod.getParameterCount() > 0) continue;
+      if (declaratedMethod.getParameterTypes().length > 0) continue;
       if (declaratedMethod.getReturnType() == void.class) continue;
       Matcher matcher = METHOD.matcher(declaratedMethod.getName());
       if (!matcher.matches()) continue;
