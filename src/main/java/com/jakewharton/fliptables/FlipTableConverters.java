@@ -90,7 +90,7 @@ public final class FlipTableConverters {
     ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
     int columnCount = resultSetMetaData.getColumnCount();
     for (int column = 0; column < columnCount; column++) {
-      headers.add(resultSetMetaData.getColumnName(column));
+      headers.add(resultSetMetaData.getColumnName(column + 1));
     }
 
     List<String[]> data = new ArrayList<>();
