@@ -35,7 +35,7 @@ public final class FakeResultSet extends AbstractResultSet {
     }
 
     @Override public String getColumnName(int column) throws SQLException {
-      return headers[column];
+      return headers[column - 1];
     }
   }
 }
