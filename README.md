@@ -138,7 +138,7 @@ Download
 --------
 
 Download the [latest jar][1] or reference on Maven central as
-`com.jakewharton.fliptables:fliptables:1.0.1`.
+`com.jakewharton.fliptables:fliptables:1.0.2`.
 
 
 
@@ -161,4 +161,4 @@ License
 
 
 
- [1]: http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.jakewharton.fliptables&a=fliptables&v=LATEST
+ [1]: https://search.maven.org/remote_content?g=com.jakewharton.fliptables&a=fliptables&v=LATEST
