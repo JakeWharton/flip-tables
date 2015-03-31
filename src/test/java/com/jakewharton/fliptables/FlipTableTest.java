@@ -159,7 +159,7 @@ public class FlipTableTest {
     FlipTable.of(headers, less);
   }
 
-  @Test public void rowColumnMismatchThrowsWhenMore() throws Exception {
+  @Test public void rowColumnMismatchThrowsWhenMore() {
     String[] headers = { "The", "Headers" };
     
     exception.expect(IllegalArgumentException.class);
