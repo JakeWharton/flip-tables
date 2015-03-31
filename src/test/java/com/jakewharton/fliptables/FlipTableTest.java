@@ -149,7 +149,7 @@ public class FlipTableTest {
     assertThat(FlipTable.of(outerHeaders, outerData)).isEqualTo(expected);
   }
 
-  @Test public void rowColumnMismatchThrows() {
+  @Test public void rowColumnMismatchThrowsWhenLess() {
     String[] headers = { "The", "Headers" };
 
     exception.expect(IllegalArgumentException.class);
@@ -157,7 +157,11 @@ public class FlipTableTest {
 
     String[][] less = { { "Less" } };
     FlipTable.of(headers, less);
+  }
 
+  @Test public void rowColumnMismatchThrowsWhenMore() throws Exception {
+    String[] headers = { "The", "Headers" };
+    
     exception.expect(IllegalArgumentException.class);
     exception.expectMessage("Row 1's 4 columns != 2 columns");
 
