@@ -2,7 +2,7 @@ package com.jakewharton.fliptables;
 
 import org.junit.Test;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FlipTableTest {
   @Test public void empty() {
