@@ -1,13 +1,18 @@
 package com.jakewharton.fliptables;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FlipTableTest {
+
+  @Rule public ExpectedException exception = ExpectedException.none();
+
   @Test public void empty() {
     String[] headers = { "Test", "Header" };
-    String[][] data = { };
+    String[][] data = {};
     String expected = ""
         + "╔══════╤════════╗\n"
         + "║ Test │ Header ║\n"
@@ -19,7 +24,7 @@ public class FlipTableTest {
 
   @Test public void emptyWide() {
     String[] headers = { "Test", "Headers", "Are", "The", "Best" };
-    String[][] data = { };
+    String[][] data = {};
     String expected = ""
         + "╔══════╤═════════╤═════╤═════╤══════╗\n"
         + "║ Test │ Headers │ Are │ The │ Best ║\n"
@@ -31,7 +36,7 @@ public class FlipTableTest {
 
   @Test public void emptyThinOneColumn() {
     String[] headers = { "A" };
-    String[][] data = { };
+    String[][] data = {};
     String expected = ""
         + "╔═════════╗\n"
         + "║ A       ║\n"
@@ -43,7 +48,7 @@ public class FlipTableTest {
 
   @Test public void emptyThinTwoColumns() {
     String[] headers = { "A", "B" };
-    String[][] data = { };
+    String[][] data = {};
     String expected = ""
         + "╔═══╤═════╗\n"
         + "║ A │ B   ║\n"
@@ -144,43 +149,44 @@ public class FlipTableTest {
     assertThat(FlipTable.of(outerHeaders, outerData)).isEqualTo(expected);
   }
 
-  @Test public void rowColumnMismatchThrows() {
+  @Test public void rowColumnMismatchThrowsWhenLess() {
     String[] headers = { "The", "Headers" };
-    try {
-      String[][] less = { { "Less" } };
-      FlipTable.of(headers, less);
-    } catch (IllegalArgumentException e) {
-      assertThat(e).hasMessage("Row 1's 1 columns != 2 columns");
-    }
-    try {
-      String[][] more = { { "More", "Is", "Not", "Less" } };
-      FlipTable.of(headers, more);
-    } catch (IllegalArgumentException e) {
-      assertThat(e).hasMessage("Row 1's 4 columns != 2 columns");
-    }
+
+    exception.expect(IllegalArgumentException.class);
+    exception.expectMessage("Row 1's 1 columns != 2 columns");
+
+    String[][] less = { { "Less" } };
+    FlipTable.of(headers, less);
+  }
+
+  @Test public void rowColumnMismatchThrowsWhenMore() {
+    String[] headers = { "The", "Headers" };
+    
+    exception.expect(IllegalArgumentException.class);
+    exception.expectMessage("Row 1's 4 columns != 2 columns");
+
+    String[][] more = { { "More", "Is", "Not", "Less" } };
+    FlipTable.of(headers, more);
   }
 
   @Test public void nullHeadersThrows() {
-    try {
-      FlipTable.of(null, new String[0][0]);
-    } catch (NullPointerException e) {
-      assertThat(e).hasMessage("headers == null");
-    }
+    exception.expect(NullPointerException.class);
+    exception.expectMessage("headers == null");
+
+    FlipTable.of(null, new String[0][0]);
   }
 
   @Test public void emptyHeadersThrows() {
-    try {
-      FlipTable.of(new String[0], new String[0][0]);
-    } catch (IllegalArgumentException e) {
-      assertThat(e).hasMessage("Headers must not be empty.");
-    }
+    exception.expect(IllegalArgumentException.class);
+    exception.expectMessage("Headers must not be empty.");
+
+    FlipTable.of(new String[0], new String[0][0]);
   }
 
   @Test public void nullDataThrows() {
-    try {
-      FlipTable.of(new String[1], null);
-    } catch (NullPointerException e) {
-      assertThat(e).hasMessage("data == null");
-    }
+    exception.expect(NullPointerException.class);
+    exception.expectMessage("data == null");
+
+    FlipTable.of(new String[1], null);
   }
 }
