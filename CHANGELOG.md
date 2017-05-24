@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.3 *(2017-05-24)*
+----------------------------
+
+ * Support for custom TableFormat: https://github.com/JakeWharton/flip-tables/issues/14
+ * Added AsciiTableFormat
+
+
 Version 1.0.2 *(2014-11-22)*
 ----------------------------
 

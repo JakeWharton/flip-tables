@@ -92,6 +92,27 @@ public class FlipTableTest {
         + "╚══════╧════════╝\n";
     assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
+  
+
+  @Test public void simpleAscii() {
+    String[] headers = { "Hi", "Header" };
+    String[][] data = { //
+        { "Foo", "Bar" }, //
+        { "Kit", "Kat" }, //
+        { "Ping", "Pong" }, //
+    };
+    String expected = ""
+        + "+======+========+\n"
+        + "| Hi   | Header |\n"
+        + "|======|========|\n"
+        + "| Foo  | Bar    |\n"
+        + "|------|--------|\n"
+        + "| Kit  | Kat    |\n"
+        + "|------|--------|\n"
+        + "| Ping | Pong   |\n"
+        + "+------+--------+\n";
+    assertThat(FlipTable.of(new AsciiTableFormat(), headers, data)).isEqualTo(expected);
+  }
 
   @Test public void dataNewlineFirstLineLong() {
     String[] headers = { "One", "Two" };

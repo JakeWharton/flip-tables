@@ -29,10 +29,15 @@ public final class FlipTable {
 
   /** Create a new table with the specified headers and row data. */
   public static String of(String[] headers, String[][] data) {
+    return of(new DefaultTableFormat(), headers, data);
+  }
+  
+  /** Create a new table with the specified TableFormat, headers and row data. */
+  public static String of(TableFormat tableFormat, String[] headers, String[][] data) {
     if (headers == null) throw new NullPointerException("headers == null");
     if (headers.length == 0) throw new IllegalArgumentException("Headers must not be empty.");
     if (data == null) throw new NullPointerException("data == null");
-    return new FlipTable(headers, data).toString();
+    return new FlipTable(tableFormat, headers, data).toString();
   }
 
   private final String[] headers;
@@ -40,8 +45,11 @@ public final class FlipTable {
   private final int columns;
   private final int[] columnWidths;
   private final int emptyWidth;
+  private TableFormat tableFormat = null;
 
-  private FlipTable(String[] headers, String[][] data) {
+  private FlipTable(TableFormat tableFormat, String[] headers, String[][] data) {
+	  
+	this.tableFormat = tableFormat;
     this.headers = headers;
     this.data = data;
 
@@ -73,18 +81,20 @@ public final class FlipTable {
 
   @Override public String toString() {
     StringBuilder builder = new StringBuilder();
-    printDivider(builder, "╔═╤═╗");
+    printDivider(builder, tableFormat.getHeaderRowTopChars());
     printData(builder, headers);
     if (data.length == 0) {
-      printDivider(builder, "╠═╧═╣");
-      builder.append('║').append(pad(emptyWidth, EMPTY)).append("║\n");
-      printDivider(builder, "╚═══╝");
+      printDivider(builder, tableFormat.getHeaderRowNoDataBottomChars());
+      builder.append(tableFormat.getRowStartChars())
+      		 .append(pad(emptyWidth, EMPTY))
+      		 .append(tableFormat.getRowEndChars() + tableFormat.getRowEndTerminatorChars());
+      printDivider(builder, tableFormat.getFooterRowNoDataBottomChars());
     } else {
       for (int row = 0; row < data.length; row++) {
-        printDivider(builder, row == 0 ? "╠═╪═╣" : "╟─┼─╢");
+        printDivider(builder, row == 0 ? tableFormat.getHeaderRowBottomChars() : tableFormat.getDataRowDividerChars());
         printData(builder, data[row]);
       }
-      printDivider(builder, "╚═╧═╝");
+      printDivider(builder, tableFormat.getFooterRowBottomChars());
     }
     return builder.toString();
   }
@@ -94,19 +104,19 @@ public final class FlipTable {
       out.append(column == 0 ? format.charAt(0) : format.charAt(2));
       out.append(pad(columnWidths[column], "").replace(' ', format.charAt(1)));
     }
-    out.append(format.charAt(4)).append('\n');
+    out.append(format.charAt(4)).append(tableFormat.getRowEndTerminatorChars());
   }
 
   private void printData(StringBuilder out, String[] data) {
     for (int line = 0, lines = 1; line < lines; line++) {
       for (int column = 0; column < columns; column++) {
-        out.append(column == 0 ? '║' : '│');
+        out.append(column == 0 ? tableFormat.getRowStartChars() : tableFormat.getColumnSeparatorChars());
         String[] cellLines = data[column].split("\\n");
         lines = Math.max(lines, cellLines.length);
         String cellLine = line < cellLines.length ? cellLines[line] : "";
         out.append(pad(columnWidths[column], cellLine));
       }
-      out.append("║\n");
+      out.append(tableFormat.getRowEndChars() + tableFormat.getRowEndTerminatorChars());
     }
   }
 

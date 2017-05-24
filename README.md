@@ -132,6 +132,42 @@ System.out.println(FlipTableConverters.fromObjects(headers, data));
 ╚════════════╧═══════════╧═════╧═════════╝
 ```
 
+TableFormat 
+--------
+
+There are two available `TableFormat`s.
+
+**DefaultTableFormat**
+
+`System.out.println(FlipTable.of(headers, data));`
+
+OR
+
+`System.out.println(FlipTable.of(new DefaultTableFormat(), headers, data));`
+
+```
+╔══════╤════════╗
+║ Test │ Header ║
+╠══════╪════════╣
+║ Foo  │ Bar    ║
+╟──────┼────────╢
+║ Kit  │ Kat    ║
+╚══════╧════════╝
+```
+
+**AsciiTableFormat**
+
+`System.out.println(FlipTable.of(new AsciiTableFormat(), headers, data));`
+
+```
++======+========+
+| Test | Header |
+|======|========|
+| Foo  | Bar    |
+|------|--------|
+| Kit  | Kat    |
++------+--------+
+```
 
 
 Download
