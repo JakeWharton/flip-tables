@@ -97,7 +97,7 @@ public final class FlipTableConverters {
   }
 
   /** Create a table from a {@link ResultSet}. */
-  static String fromResultSet(ResultSet resultSet) throws SQLException {
+  public static String fromResultSet(ResultSet resultSet) throws SQLException {
     if (resultSet == null) throw new NullPointerException("resultSet == null");
     if (!resultSet.isBeforeFirst()) throw new IllegalStateException("Result set not at first.");
 
