@@ -145,6 +145,44 @@ public class FlipTableTest {
     assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
+  @Test public void headerWithColor() {
+    String[] headers = { "\u001b[31mRed\u001b[0m", "\u001b[34mBlue\u001b[0m", "\u001b[93mYellow\u001b[0m" };
+    String[][] data = { { "1", "2", "3" } };
+    String expected = ""
+        + "╔═════╤══════╤════════╗\n"
+        + "║ Red │ Blue │ Yellow ║\n"
+        + "╠═════╪══════╪════════╣\n"
+        + "║ 1   │ 2    │ 3      ║\n"
+        + "╚═════╧══════╧════════╝\n";
+    String out = FlipTable.of(headers, data);
+    String withoutColor = out.replace("\u001b[31m", "")
+        .replace("\u001b[0m", "")
+        .replace("\u001b[34m", "")
+        .replace("\u001b[0m", "")
+        .replace("\u001b[93m", "")
+        .replace("\u001b[0m", "");
+    assertThat(withoutColor).isEqualTo(expected);
+  }
+
+  @Test public void dataWithColor() {
+    String[] headers = { "One", "Two", "Three" };
+    String[][] data = { { "\u001b[31mRed\u001b[0m", "\u001b[34mBlue\u001b[0m", "\u001b[93mYellow\u001b[0m" } };
+    String expected = ""
+        + "╔═════╤══════╤════════╗\n"
+        + "║ One │ Two  │ Three  ║\n"
+        + "╠═════╪══════╪════════╣\n"
+        + "║ Red │ Blue │ Yellow ║\n"
+        + "╚═════╧══════╧════════╝\n";
+    String out = FlipTable.of(headers, data);
+    String withoutColor = out.replace("\u001b[31m", "")
+        .replace("\u001b[0m", "")
+        .replace("\u001b[34m", "")
+        .replace("\u001b[0m", "")
+        .replace("\u001b[93m", "")
+        .replace("\u001b[0m", "");
+    assertThat(withoutColor).isEqualTo(expected);
+  }
+
   @Test public void nested() {
     String[] innerHeaders = { "One", "Two" };
     String[][] innerData = { { "1", "2" } };
