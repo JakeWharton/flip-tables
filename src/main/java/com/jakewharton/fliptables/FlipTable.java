@@ -26,6 +26,7 @@ package com.jakewharton.fliptables;
  */
 public final class FlipTable {
   private static final String EMPTY = "(empty)";
+  private static final String ANSI_COLORS = "\u001B\\[[;\\d]*m";
 
   /** Create a new table with the specified headers and row data. */
   public static String of(String[] headers, String[][] data) {
@@ -55,7 +56,8 @@ public final class FlipTable {
       }
       for (int column = 0; column < columns; column++) {
         for (String rowDataLine : rowData[column].split("\\n")) {
-          columnWidths[column] = Math.max(columnWidths[column], rowDataLine.length());
+          String rowDataWithoutColor = rowDataLine.replaceAll(ANSI_COLORS, "");
+          columnWidths[column] = Math.max(columnWidths[column], rowDataWithoutColor.length());
         }
       }
     }
