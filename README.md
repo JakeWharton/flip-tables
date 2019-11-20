@@ -5,6 +5,10 @@ Because pretty-printing text tables in Java should be easy.
 
 (╯°□°）╯︵ ┻━┻
 
+Development on this project has basically stopped. You can find a more
+comprehensive and actively-developed text table library at
+https://github.com/JakeWharton/picnic.
+
 
 
 Usage
