@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.0 *(2020-02-04)*
+----------------------------
+
+ * New: Make `fromResultSet` factory method actually public. Oops!
+ * Fix: Do not count ANSI color escape sequences when computing cell widths.
+
+
 Version 1.0.2 *(2014-11-22)*
 ----------------------------
 
