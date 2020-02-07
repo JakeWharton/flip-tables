@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.1.0 *(2020-02-04)*
+Version 1.1.0 *(2020-02-07)*
 ----------------------------
 
  * New: Make `fromResultSet` factory method actually public. Oops!
