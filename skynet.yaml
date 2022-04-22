@@ -1,0 +1,23 @@
+# Testing with Skynet 2.0 - https://wiki.atl.workiva.net/display/SKYNET/Testing+with+Skynet+2.0?src=search
+name: flip-tables-tests
+image: amazoncorretto:11
+description: run flip-tables unit tests
+timeout: short
+size: small
+
+run:
+  on-pull-request: yes
+  on-tag: yes
+  when-branch-name-is:
+    - .*_debug
+    - ^refs/tags/.+
+    - master
+
+artifacts:
+  - /build/build/test-results/test
+
+test-reports:
+  - /build/build/test-results/test
+
+scripts:
+  - ./gradlew test
