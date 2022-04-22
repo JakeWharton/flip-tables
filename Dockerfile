@@ -23,3 +23,6 @@ ARG BUILD_ARTIFACTS_VERACODE=/java.tar.gz
 
 ARG BUILD_ARTIFACTS_JAVA=/build/build/libs/*.jar
 ARG BUILD_ARTIFACTS_TEST_REPORTS=/build/build/test-results/test/TEST-*.xml
+
+# We only care about publishing a jar
+FROM scratch
