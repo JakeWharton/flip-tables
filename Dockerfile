@@ -15,7 +15,7 @@ COPY . .
 
 # Build the application.
 #
-RUN ./gradlew --no-daemon assemble
+RUN ./gradlew --no-daemon --console=plain assemble
 # Collect assembled jar for publishing
 ARG BUILD_ARTIFACTS_JAVA=/build/build/libs/*.jar
 

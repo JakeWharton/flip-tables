@@ -21,4 +21,4 @@ test-reports:
   - /testing/build/test-results/test
 
 scripts:
-  - ./gradlew --no-daemon test
+  - ./gradlew --no-daemon --console=plain test
