@@ -12,14 +12,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'java-library'
 
 repositories {
-    mavenLocal()
-    maven {
-        url = 'https://oss.sonatype.org/content/repositories/snapshots'
-    }
-
-    maven {
-        url = 'https://repo.maven.apache.org/maven2'
-    }
+    mavenCentral()
 }
 
 //java {
@@ -28,7 +21,7 @@ repositories {
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.assertj:assertj-core:2.0.0'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
 }
 
 group ARTIFACT_PACKAGE
