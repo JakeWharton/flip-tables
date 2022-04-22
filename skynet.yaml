@@ -1,8 +1,8 @@
-# Testing with Skynet 2.0 - https://wiki.atl.workiva.net/display/SKYNET/Testing+with+Skynet+2.0?src=search
+# Testing with Skynet - https://github.com/Workiva/skynet/tree/master/docs
 name: flip-tables-tests
 image: amazoncorretto:11
 description: run flip-tables unit tests
-timeout: short
+timeout: 300 #5 minutes
 size: small
 contact: support-onecloud
 
