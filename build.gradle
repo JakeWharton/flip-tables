@@ -15,10 +15,6 @@ repositories {
     mavenCentral()
 }
 
-//java {
-//    withSourcesJar()
-//}
-
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.assertj:assertj-core:3.22.0'
@@ -39,14 +35,8 @@ publishing {
             artifactId = ARTIFACT_NAME
             version = ARTIFACT_VERSION
             from components.java
-        }
-    }
-    repositories {
-        maven {
-            url = "https://maven.pkg.github.com/${COMPANY}/${REPOSITORY_NAME}"
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
+            pom {
+                name = ARTIFACT_NAME
             }
         }
     }
