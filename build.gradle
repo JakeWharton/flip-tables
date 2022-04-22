@@ -18,7 +18,7 @@ repositories {
     }
 
     maven {
-        url = 'http://repo.maven.apache.org/maven2'
+        url = 'https://repo.maven.apache.org/maven2'
     }
 }
 
@@ -27,8 +27,8 @@ repositories {
 //}
 
 dependencies {
-    testCompile 'junit:junit:4.11'
-    testCompile 'org.assertj:assertj-core:2.0.0'
+    testImplementation 'junit:junit:4.11'
+    testImplementation 'org.assertj:assertj-core:2.0.0'
 }
 
 group ARTIFACT_PACKAGE
