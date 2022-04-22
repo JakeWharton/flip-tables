@@ -1,0 +1,20 @@
+version: 2
+registries:
+  maven-repository-workivaeast-jfrog-io-workivaeast-maven-prod:
+    type: maven-repository
+    url: https://workivaeast.jfrog.io/workivaeast/maven-prod
+    username: "${{secrets.WORKIVA_ARTIFACTORY_JFROG_USERNAME}}"
+    password: "${{secrets.WORKIVA_ARTIFACTORY_JFROG_PASSWORD}}"
+
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    registries:
+      - maven-repository-workivaeast-jfrog-io-workivaeast-maven-prod
+    schedule:
+      interval: "weekly"
+      day: sunday
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
