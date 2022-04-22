@@ -14,10 +14,10 @@ run:
     - master
 
 artifacts:
-  - /build/build/test-results/test
+  - /testing/build/test-results/test
 
 test-reports:
-  - /build/build/test-results/test
+  - /testing/build/test-results/test
 
 scripts:
-  - ./gradlew test
+  - ./gradlew --no-daemon test
