@@ -21,7 +21,6 @@ dependencies {
 }
 
 group ARTIFACT_PACKAGE
-version ARTIFACT_VERSION
 description = 'Flip Tables'
 sourceCompatibility = '1.8'
 
@@ -33,7 +32,6 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = ARTIFACT_PACKAGE
             artifactId = ARTIFACT_NAME
-            version = ARTIFACT_VERSION
             from components.java
             pom {
                 name = ARTIFACT_NAME

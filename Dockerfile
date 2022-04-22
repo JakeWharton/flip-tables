@@ -1,5 +1,4 @@
 FROM amazoncorretto:11 AS build
-
 WORKDIR /build
 
 RUN yum install tar gzip -y
@@ -12,10 +11,13 @@ RUN ./gradlew --version
 
 COPY . .
 
+ARG GIT_BRANCH
+ARG GIT_TAG
+
 
 # Build the application.
 #
-RUN ./gradlew --no-daemon --console=plain assemble
+RUN ./scripts/build.sh
 # Collect assembled jar for publishing
 ARG BUILD_ARTIFACTS_JAVA=/build/build/libs/*.jar
 
