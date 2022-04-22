@@ -12,17 +12,18 @@ RUN ./gradlew --version
 
 COPY . .
 
-#
+
 # Build the application.
 #
-RUN ./gradlew --no-daemon build
+RUN ./gradlew --no-daemon assemble
+# Collect assembled jar for publishing
+ARG BUILD_ARTIFACTS_JAVA=/build/build/libs/*.jar
 
 # Generate Veracode Artifact
 RUN tar -cvzf /java.tar.gz /build/build/libs/
 ARG BUILD_ARTIFACTS_VERACODE=/java.tar.gz
 
-ARG BUILD_ARTIFACTS_JAVA=/build/build/libs/*.jar
-ARG BUILD_ARTIFACTS_TEST_REPORTS=/build/build/test-results/test/TEST-*.xml
+
 
 # We only care about publishing a jar
 FROM scratch
