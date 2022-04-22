@@ -4,7 +4,7 @@ image: amazoncorretto:11
 description: run flip-tables unit tests
 timeout: short
 size: small
-contact: #support-onecloud
+contact: support-onecloud
 
 run:
   on-pull-request: yes
