@@ -14,7 +14,6 @@ COPY . .
 ARG GIT_BRANCH
 ARG GIT_TAG
 
-
 # Build the application.
 #
 RUN ./scripts/build.sh
@@ -24,8 +23,6 @@ ARG BUILD_ARTIFACTS_JAVA=/build/build/libs/*.jar
 # Generate Veracode Artifact
 RUN tar -cvzf /java.tar.gz /build/build/libs/
 ARG BUILD_ARTIFACTS_VERACODE=/java.tar.gz
-
-
 
 # We only care about publishing a jar
 FROM scratch

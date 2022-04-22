@@ -13,5 +13,5 @@ fi
 
 echo "Executing build as: ${BUILD_CMD}"
 exit=0
-eval ${BUILD_CMD} || exit=$?
+eval "${BUILD_CMD}" || exit=$?
 exit $exit
