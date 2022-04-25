@@ -1,0 +1,6 @@
+.git/
+.gitignore
+.dockerignore
+.idea/
+*/build/
+*/out/
