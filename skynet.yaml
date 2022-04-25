@@ -1,6 +1,6 @@
 # Testing with Skynet - https://github.com/Workiva/skynet/tree/master/docs
 name: flip-tables-tests
-image: amazoncorretto:11
+image: amazoncorretto:8
 description: run flip-tables unit tests
 timeout: 300 #5 minutes
 size: small
