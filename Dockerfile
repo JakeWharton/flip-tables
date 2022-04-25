@@ -1,4 +1,4 @@
-FROM amazoncorretto:11 AS build
+FROM amazoncorretto:8 AS build
 WORKDIR /build
 
 RUN yum install tar gzip -y
