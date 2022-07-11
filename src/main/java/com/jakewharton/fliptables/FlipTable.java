@@ -15,6 +15,10 @@
  */
 package com.jakewharton.fliptables;
 
+import com.jakewharton.fliptables.format.wrap.ColumnWrapFormat;
+import com.jakewharton.fliptables.format.wrap.DefaultWrapFormat;
+import com.jakewharton.fliptables.format.wrap.WrappedTableData;
+
 /**
  * <pre>
  * ╔═════════════╤════════════════════════════╤══════════════╗
@@ -30,10 +34,13 @@ public final class FlipTable {
 
   /** Create a new table with the specified headers and row data. */
   public static String of(String[] headers, String[][] data) {
+	  return of(headers, data, new DefaultWrapFormat());
+  }
+  public static String of(String[] headers, String[][] data, ColumnWrapFormat columnWrapFormat) {
     if (headers == null) throw new NullPointerException("headers == null");
     if (headers.length == 0) throw new IllegalArgumentException("Headers must not be empty.");
     if (data == null) throw new NullPointerException("data == null");
-    return new FlipTable(headers, data).toString();
+    return new FlipTable(headers, data, columnWrapFormat).toString();
   }
 
   private final String[] headers;
@@ -42,12 +49,10 @@ public final class FlipTable {
   private final int[] columnWidths;
   private final int emptyWidth;
 
-  private FlipTable(String[] headers, String[][] data) {
-    this.headers = headers;
-    this.data = data;
-
+  private FlipTable(String[] headers, String[][] data, ColumnWrapFormat columnWrapFormat) {
+    
     columns = headers.length;
-    columnWidths = new int[columns];
+    int[] columnWidths = new int[columns];
     for (int row = -1; row < data.length; row++) {
       String[] rowData = (row == -1) ? headers : data[row]; // Hack to parse headers too.
       if (rowData.length != columns) {
@@ -61,6 +66,11 @@ public final class FlipTable {
         }
       }
     }
+    
+    WrappedTableData wrappedTableData = columnWrapFormat.adjustData(headers, data, columnWidths);
+    this.headers = wrappedTableData.getHeaders();
+    this.data = wrappedTableData.getData();
+    this.columnWidths = wrappedTableData.getColumnWidths();
 
     int emptyWidth = 3 * (columns - 1); // Account for column dividers and their spacing.
     for (int columnWidth : columnWidths) {

@@ -136,7 +136,52 @@ System.out.println(FlipTableConverters.fromObjects(headers, data));
 ╚════════════╧═══════════╧═════╧═════════╝
 ```
 
+Column wrapping (optional)
+--------------------------
 
+**Fixed Table width**
+```java
+String[] headers = { "First Name", "Last Name", "Details" };
+String[][] data = {
+    { "One One One One", "Two Two Two:Two", "Three Three.Three,Three" },
+    { "Joe", "Smith", "Hello" }
+};
+System.out.println(FlipTable.of(headers, data, FixedWidth.withWidth(30)));
+
+```
+```
+╔════════════╤═══════════╤═════════════╗
+║ First Name │ Last Name │ Details     ║
+╠════════════╪═══════════╪═════════════╣
+║ One One    │ Two Two   │ Three Three ║
+║ One One    │ Two:Two   │ .Three,     ║
+║            │           │ Three       ║
+╟────────────┼───────────┼─────────────╢
+║ Joe        │ Smith     │ Hello       ║
+╚════════════╧═══════════╧═════════════╝
+```
+
+**Custom Column widths**
+```java
+String[] headers = { "First", "Last", "Det" };
+String[][] data = {
+    { "One One One One", "Two Two Two:Two", "Fifteen four on on on on on five" },
+    { "Joe", "Boe", "Hello" }
+};
+System.out.println(FlipTable.of(headers, data, CustomColumnWidth.withColumnWidths(new int[] {5, 5, 8})));
+```
+```
+╔═══════╤═══════╤══════════╗
+║ First │ Last  │ Det      ║
+╠═══════╪═══════╪══════════╣
+║ One   │ Two   │ Fifteen  ║
+║ One   │ Two   │ four on  ║
+║ One   │ Two:  │ on on on ║
+║ One   │ Two   │  on five ║
+╟───────┼───────┼──────────╢
+║ Joe   │ Boe   │ Hello    ║
+╚═══════╧═══════╧══════════╝
+```
 
 Download
 --------

@@ -1,0 +1,27 @@
+╔════════════════════════════════╤════════════════════════════════╤════════════════════════════════╤════════════════════════════════╗
+║ Feather                        │ Weather                        │ Fizz                           │ Buzz                           ║
+╠════════════════════════════════╪════════════════════════════════╪════════════════════════════════╪════════════════════════════════╣
+║ aaaaaa aaaaaa aaaaaa aaaaaa    │ bbbbbb bbbbbb bbbbbb bbbbbb    │ cccccc cccccc cccccc cccccc    │ dddddd dddddd dddddd dddddd    ║
+║ aaaaaa aaaaaa aaaaaa aaaaaa    │ bbbbbb                         │ cccccc cccccc cccccc cccccc    │ dddddd dddddd dddddd dddddd    ║
+║ aaaaaa aaaaaa                  │                                │ cccccc cccccc cccccc cccccc    │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │ cccccc cccccc cccccc           │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd                         ║
+╟────────────────────────────────┼────────────────────────────────┼────────────────────────────────┼────────────────────────────────╢
+║ aaaaaa aaaaaa aaaaaa aaaaaa    │ bbbbbb bbbbbb bbbbbb bbbbbb    │ some long words somelongwords  │ dddddd dddddd dddddd dddddd    ║
+║ aaaaaa aaaaaa aaaaaa aaaaaa    │ bbbbbb                         │ somelongerwords                │ dddddd dddddd dddddd dddddd    ║
+║ aaaaaa aaaaaa                  │                                │ someevenlongerwords            │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │ someevenmorelongerwords        │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd                         ║
+╟────────────────────────────────┼────────────────────────────────┼────────────────────────────────┼────────────────────────────────╢
+║ aaaaaa aaaaaa aaaaaa aaaaaa    │ bbbbbb bbbbbb bbbbbb bbbbbb    │ cccccc cccccc cccccc cccccc    │ dddddd dddddd dddddd dddddd    ║
+║ aaaaaa aaaaaa aaaaaa aaaaaa    │ bbbbbb                         │ cccccc cccccc cccccc cccccc    │ dddddd dddddd dddddd dddddd    ║
+║ aaaaaa aaaaaa                  │                                │ cccccc cccccc cccccc cccccc    │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │ cccccc cccccc cccccc           │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd dddddd dddddd dddddd    ║
+║                                │                                │                                │ dddddd                         ║
+╚════════════════════════════════╧════════════════════════════════╧════════════════════════════════╧════════════════════════════════╝
