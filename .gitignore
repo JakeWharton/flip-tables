@@ -7,3 +7,7 @@ target
 
 pom.xml.*
 release.properties
+
+.settings/
+.project/
+.classpath/
