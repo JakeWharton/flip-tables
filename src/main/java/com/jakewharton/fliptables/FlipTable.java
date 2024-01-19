@@ -50,12 +50,13 @@ public final class FlipTable {
     columnWidths = new int[columns];
     for (int row = -1; row < data.length; row++) {
       String[] rowData = (row == -1) ? headers : data[row]; // Hack to parse headers too.
+      if (rowData == null) throw new NullPointerException("data[" + row + "] == null");
       if (rowData.length != columns) {
         throw new IllegalArgumentException(
             String.format("Row %s's %s columns != %s columns", row + 1, rowData.length, columns));
       }
       for (int column = 0; column < columns; column++) {
-        for (String rowDataLine : rowData[column].split("\\n")) {
+        for (String rowDataLine : String.valueOf(rowData[column]).split("\\n")) {
           String rowDataWithoutColor = rowDataLine.replaceAll(ANSI_COLORS, "");
           columnWidths[column] = Math.max(columnWidths[column], rowDataWithoutColor.length());
         }
@@ -103,7 +104,7 @@ public final class FlipTable {
     for (int line = 0, lines = 1; line < lines; line++) {
       for (int column = 0; column < columns; column++) {
         out.append(column == 0 ? '║' : '│');
-        String[] cellLines = data[column].split("\\n");
+        String[] cellLines = String.valueOf(data[column]).split("\\n");
         lines = Math.max(lines, cellLines.length);
         String cellLine = line < cellLines.length ? cellLines[line] : "";
         out.append(pad(columnWidths[column], cellLine));

@@ -93,6 +93,23 @@ public class FlipTableTest {
     assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
   }
 
+  @Test public void simpleWithNulls() {
+    String[] headers = { "Hi", "Header" };
+    String[][] data = { //
+        { "Foo", null }, //
+        { null, "Kat" }, //
+    };
+    String expected = ""
+        + "╔══════╤════════╗\n"
+        + "║ Hi   │ Header ║\n"
+        + "╠══════╪════════╣\n"
+        + "║ Foo  │ null   ║\n"
+        + "╟──────┼────────╢\n"
+        + "║ null │ Kat    ║\n"
+        + "╚══════╧════════╝\n";
+    assertThat(FlipTable.of(headers, data)).isEqualTo(expected);
+  }
+
   @Test public void dataNewlineFirstLineLong() {
     String[] headers = { "One", "Two" };
     String[][] data = { { "Foo Bar\nBaz", "Two" } };
@@ -241,5 +258,12 @@ public class FlipTableTest {
     exception.expectMessage("data == null");
 
     FlipTable.of(new String[1], null);
+  }
+
+  @Test public void nullRowThrows() {
+    exception.expect(NullPointerException.class);
+    exception.expectMessage("data[1] == null");
+
+    FlipTable.of(new String[] { "" }, new String[][] { { "" }, null });
   }
 }
