@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 public class FlipTableConvertersTest {
   @Test public void simpleIterator() {
