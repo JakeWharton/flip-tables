@@ -1,9 +1,6 @@
-.DS_Store
+# IntelliJ IDEA
 .idea
-*.iml
-classes
-out
-target
 
-pom.xml.*
-release.properties
+# Gradle
+.gradle
+build
