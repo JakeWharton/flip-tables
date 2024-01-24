@@ -1,5 +1,4 @@
-import static org.gradle.api.JavaVersion.VERSION_1_7
-import static org.gradle.api.JavaVersion.VERSION_20
+import static org.gradle.api.JavaVersion.VERSION_1_8
 
 buildscript {
   dependencies {
@@ -15,16 +14,8 @@ apply plugin: 'java-library'
 apply plugin: 'com.vanniktech.maven.publish'
 
 java {
-  sourceCompatibility = VERSION_1_7
-  targetCompatibility = VERSION_1_7
-
-  if (JavaVersion.current().isCompatibleWith(VERSION_20)) {
-    // Support for 1.7 was removed in JDK 20. Force a JDK that supports it (and won't warn about it).
-    toolchain {
-      languageVersion = JavaLanguageVersion.of(11)
-      vendor = JvmVendorSpec.AZUL
-    }
-  }
+  sourceCompatibility = VERSION_1_8
+  targetCompatibility = VERSION_1_8
 }
 
 dependencies {
