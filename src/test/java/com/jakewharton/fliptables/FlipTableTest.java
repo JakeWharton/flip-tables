@@ -15,16 +15,12 @@
  */
  package com.jakewharton.fliptables;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.fail;
 
 public class FlipTableTest {
-
-  @Rule public ExpectedException exception = ExpectedException.none();
-
   @Test public void empty() {
     String[] headers = { "Test", "Header" };
     String[][] data = {};
@@ -221,49 +217,60 @@ public class FlipTableTest {
 
   @Test public void rowColumnMismatchThrowsWhenLess() {
     String[] headers = { "The", "Headers" };
-
-    exception.expect(IllegalArgumentException.class);
-    exception.expectMessage("Row 1's 1 columns != 2 columns");
-
     String[][] less = { { "Less" } };
-    FlipTable.of(headers, less);
+    try {
+      FlipTable.of(headers, less);
+      fail();
+    } catch (IllegalArgumentException e) {
+      assertThat(e).hasMessageThat().isEqualTo("Row 1's 1 columns != 2 columns");
+    }
   }
 
   @Test public void rowColumnMismatchThrowsWhenMore() {
     String[] headers = { "The", "Headers" };
-
-    exception.expect(IllegalArgumentException.class);
-    exception.expectMessage("Row 1's 4 columns != 2 columns");
-
     String[][] more = { { "More", "Is", "Not", "Less" } };
-    FlipTable.of(headers, more);
+
+    try {
+      FlipTable.of(headers, more);
+      fail();
+    } catch (IllegalArgumentException e) {
+      assertThat(e).hasMessageThat().isEqualTo("Row 1's 4 columns != 2 columns");
+    }
   }
 
   @Test public void nullHeadersThrows() {
-    exception.expect(NullPointerException.class);
-    exception.expectMessage("headers == null");
-
-    FlipTable.of(null, new String[0][0]);
+    try {
+      FlipTable.of(null, new String[0][0]);
+      fail();
+    } catch (NullPointerException e) {
+      assertThat(e).hasMessageThat().isEqualTo("headers == null");
+    }
   }
 
   @Test public void emptyHeadersThrows() {
-    exception.expect(IllegalArgumentException.class);
-    exception.expectMessage("Headers must not be empty.");
-
-    FlipTable.of(new String[0], new String[0][0]);
+    try {
+      FlipTable.of(new String[0], new String[0][0]);
+      fail();
+    } catch (IllegalArgumentException e) {
+      assertThat(e).hasMessageThat().isEqualTo("Headers must not be empty.");
+    }
   }
 
   @Test public void nullDataThrows() {
-    exception.expect(NullPointerException.class);
-    exception.expectMessage("data == null");
-
-    FlipTable.of(new String[1], null);
+    try {
+      FlipTable.of(new String[1], null);
+      fail();
+    } catch (NullPointerException e) {
+      assertThat(e).hasMessageThat().isEqualTo("data == null");
+    }
   }
 
   @Test public void nullRowThrows() {
-    exception.expect(NullPointerException.class);
-    exception.expectMessage("data[1] == null");
-
-    FlipTable.of(new String[] { "" }, new String[][] { { "" }, null });
+    try {
+      FlipTable.of(new String[]{""}, new String[][]{{""}, null});
+      fail();
+    } catch (NullPointerException e) {
+      assertThat(e).hasMessageThat().isEqualTo("data[1] == null");
+    }
   }
 }
