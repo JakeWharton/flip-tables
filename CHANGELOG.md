@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [1.1.1] - 2024-01-24
+
  * Fix: Support null cell values.
 
 
@@ -27,8 +30,9 @@ Initial release.
 
 
 
-[Unreleased]: https://github.com/JakeWharton/flip-tables/compare/1.1.0...HEAD
-[0.1.0]: https://github.com/JakeWharton/flip-tables/releases/tag/1.1.0
-[0.1.0]: https://github.com/JakeWharton/flip-tables/releases/tag/1.0.2
-[0.1.0]: https://github.com/JakeWharton/flip-tables/releases/tag/1.0.1
-[0.1.0]: https://github.com/JakeWharton/flip-tables/releases/tag/1.0.0
+[Unreleased]: https://github.com/JakeWharton/flip-tables/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/JakeWharton/flip-tables/releases/tag/1.1.1
+[1.1.0]: https://github.com/JakeWharton/flip-tables/releases/tag/1.1.0
+[1.0.2]: https://github.com/JakeWharton/flip-tables/releases/tag/1.0.2
+[1.0.1]: https://github.com/JakeWharton/flip-tables/releases/tag/1.0.1
+[1.0.0]: https://github.com/JakeWharton/flip-tables/releases/tag/1.0.0
