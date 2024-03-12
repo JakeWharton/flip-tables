@@ -2,7 +2,7 @@ import static org.gradle.api.JavaVersion.VERSION_1_8
 
 buildscript {
   dependencies {
-    classpath 'com.vanniktech:gradle-maven-publish-plugin:0.27.0'
+    classpath 'com.vanniktech:gradle-maven-publish-plugin:0.28.0'
   }
 
   repositories {
