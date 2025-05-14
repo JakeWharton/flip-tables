@@ -144,7 +144,7 @@ Download
 Download the [latest jar][1] or reference on Maven central as
 `com.jakewharton.fliptables:fliptables:1.1.1`.
 
-Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
+Snapshots of the development version are available in [the Central Portal Snapshots repository][snap].
 
 
 
@@ -168,4 +168,4 @@ License
 
 
  [1]: https://search.maven.org/remote_content?g=com.jakewharton.fliptables&a=fliptables&v=LATEST
- [snap]: https://oss.sonatype.org/content/repositories/snapshots/
+ [snap]: https://central.sonatype.com/repository/maven-snapshots/
