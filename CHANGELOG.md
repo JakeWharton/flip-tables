@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+ * In-development snapshots are now published to the Central Portal Snapshots repository at https://central.sonatype.com/repository/maven-snapshots/.
+
 
 ## [1.1.1] - 2024-01-24
 
