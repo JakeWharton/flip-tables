@@ -1,4 +1,4 @@
 [libraries]
-mavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.35.0"
+mavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.36.0"
 junit = "junit:junit:4.13.2"
 truth = "com.google.truth:truth:1.4.5"
