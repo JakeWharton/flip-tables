@@ -18,6 +18,10 @@ java {
   targetCompatibility = VERSION_1_8
 }
 
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+}
+
 dependencies {
   testImplementation libs.junit
   testImplementation libs.truth

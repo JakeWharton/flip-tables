@@ -273,4 +273,24 @@ public class FlipTableTest {
       assertThat(e).hasMessageThat().isEqualTo("data[1] == null");
     }
   }
+
+  @Test public void crlfCellRendersIdenticallyToLfCell() {
+    String[] headers = { "Column" };
+    String[][] lfData = {{ "line one\nline two" }};
+    String[][] crlfData = {{ "line one\r\nline two" }};
+
+    String crlfResult = FlipTable.of(headers, crlfData);
+    String lfResult = FlipTable.of(headers, lfData);
+
+    String expected = ""
+      + "╔══════════╗\n"
+      + "║ Column   ║\n"
+      + "╠══════════╣\n"
+      + "║ line one ║\n"
+      + "║ line two ║\n"
+      + "╚══════════╝\n";
+
+    assertThat(crlfResult).isEqualTo(lfResult);
+    assertThat(crlfResult).isEqualTo(expected);
+  }
 }
