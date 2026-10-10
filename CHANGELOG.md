@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+
+## [1.1.2] - 2026-05-19
+
+ * Fix: Render cells containing CRLF (`\r\n`) line endings correctly.
+ * Build: Update Gradle to 9.5.1.
  * In-development snapshots are now published to the Central Portal Snapshots repository at https://central.sonatype.com/repository/maven-snapshots/.
 
 
@@ -32,7 +37,8 @@ Initial release.
 
 
 
-[Unreleased]: https://github.com/JakeWharton/flip-tables/compare/1.1.1...HEAD
+[Unreleased]: https://github.com/JakeWharton/flip-tables/compare/1.1.2...HEAD
+[1.1.2]: https://github.com/JakeWharton/flip-tables/releases/tag/1.1.2
 [1.1.1]: https://github.com/JakeWharton/flip-tables/releases/tag/1.1.1
 [1.1.0]: https://github.com/JakeWharton/flip-tables/releases/tag/1.1.0
 [1.0.2]: https://github.com/JakeWharton/flip-tables/releases/tag/1.0.2
