@@ -142,7 +142,7 @@ Download
 --------
 
 Download the [latest jar][1] or reference on Maven central as
-`com.jakewharton.fliptables:fliptables:1.1.1`.
+`com.jakewharton.fliptables:fliptables:1.1.2`.
 
 Snapshots of the development version are available in [the Central Portal Snapshots repository][snap].
 
